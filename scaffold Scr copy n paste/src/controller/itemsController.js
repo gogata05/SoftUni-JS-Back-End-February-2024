@@ -73,19 +73,18 @@ router.get('/:itemsId/delete', async (req, res) => {
 });
 
 router.get('/search', async (req, res) => {
-    let itemsName = req.query.searchName;
-    let itemsType = req.query.searchType;
+    //copy number of searches here:
+    let itemsName = req.query.searchName;//1
+    let itemsType = req.query.searchType;//2
 
-    console.log(itemsName);
-    console.log(itemsType);
+    console.log(itemsName);//1
+    console.log(itemsType);//2
 
-    let items = await itemsServices.search(itemsName, itemsType);
+    let items = await itemsServices.search(itemsName, itemsType);//1,2
 
     if(items == undefined) {
         items = await itemsServices.getAll();
     }
-
-
     res.render('search', {items});
 });
 
