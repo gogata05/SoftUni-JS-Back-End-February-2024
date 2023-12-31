@@ -72,15 +72,23 @@ router.get('/:itemsId/delete', async (req, res) => {
     res.redirect('/items/catalog');
 });
 
+//search:
+//Remove if not bonus
 router.get('/search', async (req, res) => {
-    //copy number of searches here:
-    let itemsName = req.query.searchName;//1
-    let itemsType = req.query.searchType;//2
+    //copy number of searches and name="" from search.hbs here:
+    //name=""//1
+    //name=""//2
+    
 
-    console.log(itemsName);//1
-    console.log(itemsType);//2
 
-    let items = await itemsServices.search(itemsName, itemsType);//1,2
+    //replace Name1,Name2 with search.hbs names: name=""       //Ctrl+H
+    let itemsName1 = req.query.searchName1;//1//!
+    let itemsName2 = req.query.searchName2;//2//!
+
+    console.log(itemsName1);//1//!
+    console.log(itemsName2);//2//!
+
+    let items = await itemsServices.search(itemsName1, itemsName2);//1,2//!
 
     if(items == undefined) {
         items = await itemsServices.getAll();
@@ -89,3 +97,35 @@ router.get('/search', async (req, res) => {
 });
 
 module.exports = router;
+
+////if the 1st search its not automatically
+// router.get('/search', isAuth, async (req, res) => {
+//     const result = { ...req.query }
+//     // console.log(result.search )
+//     let jobs;
+
+//     try {
+
+//         if (!!result.search) {
+//             jobs = await jobService.searchGames(result.search)
+//             console.log(jobs)
+//         }
+//         res.render('jobs/search', { jobs })
+
+//     } catch (err) {
+//         res.redirect('/404')
+//     }
+// })
+
+
+//profile:
+//Remove if not bonus
+router.get('/profile', async (req, res) => {
+    let userId = req.user._id;
+
+    let creatures = await creaturesServices.getMyCreatedPost(userId);
+    let owner = await creaturesServices.findOwner(userId);
+    console.log(owner);
+
+    res.render('profile', { creatures, owner })
+})
