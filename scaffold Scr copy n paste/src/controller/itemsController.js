@@ -96,23 +96,22 @@ router.get('/search', async (req, res) => {
     res.render('search', {items});
 });
 
-module.exports = router;
 
 ////if the 1st search its not automatically
 // router.get('/search', isAuth, async (req, res) => {
-//     const result = { ...req.query }
-//     // console.log(result.search )
-//     let jobs;
-
-//     try {
-
-//         if (!!result.search) {
-//             jobs = await jobService.searchGames(result.search)
-//             console.log(jobs)
-//         }
-//         res.render('jobs/search', { jobs })
-
-//     } catch (err) {
+    //     const result = { ...req.query }
+    //     // console.log(result.search )
+    //     let jobs;
+    
+    //     try {
+        
+        //         if (!!result.search) {
+            //             jobs = await jobService.searchGames(result.search)
+            //             console.log(jobs)
+            //         }
+            //         res.render('jobs/search', { jobs })
+            
+            //     } catch (err) {
 //         res.redirect('/404')
 //     }
 // })
@@ -122,10 +121,26 @@ module.exports = router;
 //Remove if not bonus
 router.get('/profile', async (req, res) => {
     let userId = req.user._id;
-
+    
     let creatures = await creaturesServices.getMyCreatedPost(userId);
     let owner = await creaturesServices.findOwner(userId);
     console.log(owner);
-
-    res.render('profile', { creatures, owner })
+    
+    res.render('profile', { items, owner })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = router;
