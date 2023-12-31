@@ -1,0 +1,44 @@
+
+
+{{!-- 
+//search: search_hbs
+//copy/paste the section html here:
+//add into the html:                     action="/items/search" method="GET"
+//add into the html:                     name="" like                = for="" and  id=""
+//--}}
+
+
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+<section class="search">
+    <h1>Search</h1>
+
+    <form class="search-form" action="/items/search" method="GET">
+        <input type="text" class="search-name" name="searchName" placeholder="Search Name...">
+        <input type="text" class="search-type" name="searchType" placeholder="Search Type...">
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+
+    <!--If there are matches after search-->
+    {{#if items}}
+    <div class="search-result">
+        <div class="search-list">
+            {{#each items}}
+            {{> item-card}}
+            {{/each}}
+        </div>
+
+    </div>
+    {{else}}
+    <!--If there are no matches-->
+    <div class="no-match">
+        <p>No match was found!</p>
+    </div>
+    {{/if}}
+</section>
