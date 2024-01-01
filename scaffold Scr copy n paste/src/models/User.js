@@ -9,7 +9,7 @@ const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema({
     //copy register shape here:
-   
+    
 
     username: {//!
         type: String,
