@@ -1,12 +1,17 @@
 
 {{!-- 
-//main: if1error_hbs, if2else_login-guest-hbs
+//main: if_error_hb, if_main_hb,
 //copy/paste the home section html here:
-//add into the html: href="/static/css/styles.css">
-//add if else to: error and user/guest
-//href,
+//add into the html:      href="/static/css/styles.css">
+//add error:              if_error_hb
+//add user/guest view:    if_main_hb
+
+//add href everywhere: "/" "items/dashboard" "items/create" "auth/login" "auth/register"
+//add href "search" or "profile" if they exists: "items/search" "items/profile"
 //--}}
 
+{{!--//Example1--}}
+{{!--//Delete later--}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +22,6 @@
 </head>
 
 <body>
-    <!-- In case of error, you should display div with class "errorContainer" -->
-    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-
     {{#if error}}
     <div>
         <div class="errorContainer">
@@ -34,11 +36,11 @@
             <ul>
                 <!--For all users-->
                 <li><a href="/">Home</a></li>
-                <li><a href="/items/catalog">Catalog</a></li>
+                <li><a href="/items/dashboard">Catalog</a></li>
 
                 {{#if user}}
                 <!--For loggin users-->
-                <li><a href="/items/create-offer">Create Offer</a></li>
+                <li><a href="/items/create">Create Offer</a></li>
                 <li><a href="/items/search">Search</a></li>
                 <li><a href="/auth/logout">Logout</a></li>
 

@@ -14,5 +14,5 @@ router.use('/items', itemsController);
 router.use('/*', (req, res) => {
     res.render('404');
 });
-
+router.use('/profile', homeController);//!//if profile exists
 module.exports = router;

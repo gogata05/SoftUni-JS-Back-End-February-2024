@@ -12,6 +12,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{!--//Example1--}}
 {{!--//Delete later--}}
 <section id="detailsPage">
@@ -36,6 +54,7 @@
                     <a href="/items/{{_id}}/edit" class="edit-btn">Edit</a>
                     <a href="/items/{{_id}}/delete" class="delete-btn">Delete</a>
                 {{else}}
+
                     {{#if isBought}}
                         <!--If user is not the owner and is bought this toy-->
                         <p><span class="buy">Thank You For Your Purchase</span></p>
@@ -43,8 +62,10 @@
                         <!--If user is not owner of the toy post-->
                         <a href="/items/{{_id}}/buy" class="buy-btn">Buy</a>
                     {{/if}}
+
                 {{/if}}
             </div>
         {{/if}}
     </div>
 </section>
+

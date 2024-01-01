@@ -1,5 +1,5 @@
 
-
+//Replace "buyingList" with the actual DB collection
 
 
 const Items = require('../models/Items');
@@ -9,21 +9,24 @@ exports.create = (itemsData) => Items.create(itemsData);
 
 exports.getAll = () => Items.find().lean();
 
-exports.getOne = (itemsId) => Items.findById(itemsId).populate('buyingList');//buyingList? its the collection
+exports.getOne = (itemsId) => Items.findById(itemsId).populate('getCollection');//!
 
-exports.getMyWishBook = (userId) => Items.find({ buyingList: userId }).lean();//buyingList? its the collection
+exports.getMyCreatedPost = (userId) => Items.find({ buyingList: userId }).lean();//!
 
 exports.update = (itemsId, itemsData) => Items.findByIdAndUpdate(itemsId, itemsData);
 
 exports.delete = (itemsId) => Items.findByIdAndDelete(itemsId);
 
-exports.search = (itemsName, itemsType) => {
-    if (itemsName) {
-        return (Items.find({ name: { $regex: itemsName, $options: 'i' } }).lean());
+exports.findOwner = (userId) => User.findById(userId).lean();//doesnt exist in search bonus
+
+ //replace Name1,Name2 with search.hbs names: name=""       //Ctrl+H
+exports.search = (itemsName1, itemsName2) => {
+    if (itemsName1) {
+        return (Items.find({ name: { $regex: itemsName1, $options: 'i' } }).lean());
     }
 
-    if (!itemsName && itemsType) {
-        return (Items.find({ itemsType: itemsType }).lean());
+    if (!itemsName1 && itemsName2) {
+        return (Items.find({ itemsName2: itemsName2 }).lean());
     }
 
 }
