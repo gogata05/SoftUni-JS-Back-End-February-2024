@@ -2,8 +2,8 @@
 
 {{!-- 
 //create
-//copy/paste the section html here:
-//add into the html:                         action="/items/create-offer" method="POST"
+//copy/paste the main or the section html here:
+//add into the html:                         action="/items/create" method="POST"
 //add into the html:                         name="" like                = for="" and  id=""
 //make shape judging by the form "id" shape:
 //copy shape here:
@@ -30,7 +30,8 @@
 
 {{!--//Example1--}}
 {{!--//Delete later--}}
-<section id="createPage">
+<main id="create">
+ <section id="createPage">
     <form id='createForm' action="/items/create-offer" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" placeholder="Name...">
@@ -58,4 +59,5 @@
 
         <input type="submit" class="create" value="Create Offer">
     </form>
-</section>
+ </section>
+</main>

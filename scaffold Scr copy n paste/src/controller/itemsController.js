@@ -1,9 +1,8 @@
 
 
-
-
+//Replace "buyingList" with the actual DB collection
+ 
 const router = require('express').Router();
-
 const itemsServices = require('../services/itemsServices')
 
 router.get('/dashboard', async (req, res) => {
@@ -14,7 +13,6 @@ router.get('/dashboard', async (req, res) => {
 router.get('/create', (req, res) => {
     res.render('items/create');
 });
-
 router.post('/create', async (req, res) => {
     try {
         await itemsServices.create({ ...req.body, owner: req.user });
@@ -29,16 +27,17 @@ router.get('/:itemsId/details', async (req, res) => {
     let items = await itemsServices.getOne(req.params.itemsId);
 
     let itemsData = await items.toObject();
-
+    
     let isOwner = itemsData.owner == req.user?._id;
-    let buyer = items.getCollection();
+    let liker = items.getCollection();
 
-    let isLiked = req.user && buyer.some(c => c._id == req.user?._id);
+    let isLiked = req.user && liker.some(c => c._id == req.user?._id);
 
     res.render('items/details', { ...itemsData, isOwner, isLiked });
 });
 
-router.get('/:itemsId/buy', async (req, res) => {
+router.get('/:itemsId/like', async (req, res) => 
+{
     const itemsId = req.params.itemsId
     let items = await itemsServices.getOne(itemsId);
 
@@ -52,7 +51,6 @@ router.get('/:itemsId/edit', async (req, res) => {
     let items = await itemsServices.getOne(itemsId);
     res.render('items/edit', { ...items.toObject() })
 });
-
 router.post('/:itemsId/edit', async (req, res) => {
     try {
         const itemsId = req.params.itemsId;
@@ -86,16 +84,13 @@ router.get('profile', async (req, res) => {
 })
 
 
-//search:
+//double search:
 //Remove if not bonus
 router.get('/search', async (req, res) => {
-    //copy number of searches and name="" from search.hbs here:
-    //name=""//1
-    //name=""//2
+    //remove #2 if its a "single" search
     
-
-
-    //replace Name1,Name2 with search.hbs names: name=""       //Ctrl+H
+   
+    
     let itemsName1 = req.query.searchName1;//1//!
     let itemsName2 = req.query.searchName2;//2//!
 

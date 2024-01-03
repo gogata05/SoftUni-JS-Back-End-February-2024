@@ -2,7 +2,7 @@
 
 {{!-- 
 //details: details_hbs
-//copy/paste the section html here:
+//copy/paste the main or the section html here:
 //fix href="#" :                      href="/items/{{_id}}/edit"
 //fix href="#" :                      href="/items/{{_id}}/delete"
 //fix href="#" :                      href="/items/{{_id}}/like"
@@ -36,7 +36,8 @@
 
 {{!--//Example1--}}
 {{!--//Delete later--}}
-<section id="detailsPage">
+<main id="details">
+ <section id="detailsPage">
     <div id="detailsInfo">
         <h1>Name: {{name}}</h1>
         <div class="info"><img src="{{image}}"></div>
@@ -71,5 +72,6 @@
             </div>
         {{/if}}
     </div>
-</section>
+ </section>
+</main>
 

@@ -2,7 +2,7 @@
 
 {{!-- 
 //register
-//copy/paste the section html here:
+//copy/paste the main or the section html here:
 //add into the html:                 action="/auth/register" method="POST"
 //add into the html:      name="" -> username, email, password, rePassword like for,id
 //fix href="#" :                     href="/auth/register"
@@ -33,7 +33,8 @@
 
 {{!--//Example1--}}
 {{!--//Delete later--}}
-<section id="registerPage">
+<main id="register">
+ <section id="registerPage">
     <form id='registerForm' action="/auth/register" method="POST">
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" placeholder="Email">
@@ -49,4 +50,5 @@
 
         <input type="submit" class="register" value="Register">
     </form>
-</section>
+ </section>
+</main>

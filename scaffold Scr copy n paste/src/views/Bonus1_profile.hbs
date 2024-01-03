@@ -2,9 +2,10 @@
 
 {{!-- 
 //Profile: profile_hb
-//copy/paste the section html here: --}}
+//copy/paste the main or the section html here: --}}
 
-
+{{!-- //if item-card is different
+use profile-card:  --}}
 
 
 
@@ -25,7 +26,7 @@
             <!-- If there are own posts in the database display each of them -->
             {{#if items}}
                 {{#each items}}
-                    {{> profile-card}}
+                    {{> item-card}}
                 {{/each}}
             {{else}}
             <!-- If there are still no own posts in the database display: -->
@@ -36,5 +37,4 @@
 
         </div>
     </section>
-
 </main>

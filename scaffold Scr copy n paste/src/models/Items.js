@@ -3,7 +3,7 @@
 
 
 const mongoose = require('mongoose');
-let ItemsSchema = new mongoose.Schema({
+let itemsSchema = new mongoose.Schema({
     //copy entity shape here:
 
     

@@ -9,4 +9,5 @@
 5.1.Edit "main.hbs" and Add a div "error" only there
 5.2.Edit all .hbs files from "login" to bonus.hbs
 6.DB models
-7.
+7.Controllers
+8.

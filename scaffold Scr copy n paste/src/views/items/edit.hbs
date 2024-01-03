@@ -2,7 +2,7 @@
 
 {{!-- 
 //edit
-//copy/paste the section html here:
+//copy/paste the main or the section html here:
 //add into the html:                       action="/items/{{_id}}/edit" method="POST"
 //add into the html:                       name="" like                = for="" and  id=""
 //replace text with variables:             value="{{name}}"
@@ -23,7 +23,8 @@
 
 {{!--//Example1--}}
 {{!--//Delete later--}}
-<section id="editPage">
+<main id="edit">
+ <section id="editPage">
     <form id='editForm' action="/items/{{_id}}/edit" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="{{name}}">
@@ -54,4 +55,5 @@
 
         <input type="submit" class="edit" value="Edit Offer">
     </form>
-</section>
+ </section>
+</main>
