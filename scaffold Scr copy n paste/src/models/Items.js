@@ -11,12 +11,11 @@ let itemsSchema = new mongoose.Schema({
 
     
     //pp snippet here:
+
+
+
+
     
-
-
- 
-
-
 });
 
 itemsSchema.method('getCollection', function () {

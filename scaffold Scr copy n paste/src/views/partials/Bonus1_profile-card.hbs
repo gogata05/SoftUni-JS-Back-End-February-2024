@@ -5,31 +5,14 @@
 {{!-- Use this card only if item-card is different --}}
 
 {{!-- 
-//Copy/Paste the loop element in dashboard.html
-//fix href="#" :                href="/items/{{_id}}/details"
-//replace src with image shape: src="{{image}}"
-//replace text with variables:  {{name}}
-//Add likes count:              {{voted.length}}
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//Add likes count:                  {{likesCount}}
+//replace text with variables:      {{name}}
+//copy shape here from create.hbs:
 
 
 --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -41,6 +24,7 @@
     <div class="card-header">
         <img src="{{image}}" />
     </div>
+
     <div class="card-body">
         <span class="tag tag-teal">Species: {{species}}</span>
         <h4>
@@ -49,9 +33,11 @@
         <div class="user">
             <div class="user-info">
                 <h5>Author: {{user}}</h5>
-                <small>Rating of votes: {{collectionProperty.length}}</small>
+                <small>Rating of votes: {{likesCount}}</small>
                 <a href="/items/{{_id}}/details" class="details_btn">Details</a>
+
             </div>
         </div>
     </div>
+
 </div>

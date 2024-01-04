@@ -25,15 +25,15 @@ router.post('/create', async (req, res) => {
 
 router.get('/:itemsId/details', async (req, res) => {
     let items = await itemsServices.getOne(req.params.itemsId);
-
     let itemsData = await items.toObject();
-    
     let isOwner = itemsData.owner == req.user?._id;
+    let itemsOwner = await itemsServices.findOwner(items.owner).lean();
+    
+    let likesCount = itemsData.buyingList.length;//!
     let liker = items.getCollection();
-
     let isLiked = req.user && liker.some(c => c._id == req.user?._id);
 
-    res.render('items/details', { ...itemsData, isOwner, isLiked });
+    res.render('items/details', { ...itemsData, isOwner, isLiked, likesCount, itemsOwner});
 });
 
 router.get('/:itemsId/like', async (req, res) => 

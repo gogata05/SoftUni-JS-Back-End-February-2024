@@ -22,6 +22,7 @@ exports.delete = (itemsId) => Items.findByIdAndDelete(itemsId);
 
 exports.findOwner = (userId) => User.findById(userId).lean();//doesnt exist in search bonus
 
+//Remove if "search" not bonus
 exports.search = (itemsName1, itemsName2) => //!
 {
     if (itemsName1)//1

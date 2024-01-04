@@ -1,7 +1,7 @@
 
 
 ---register test---
-0.Drag/drop the "scaffold" into the skeleton
+0.Drag/drop: scr,packages,Readme.md   into the skeleton (not the whole scaffold folder)
 1.Cut everything and put it in "public" folder
 2.Remove the not used "bonus" and rename the other one
 3.Copy/Paste every single html from skeleton into the .hbs files
@@ -10,4 +10,14 @@
 5.2.Edit all .hbs files from "login" to bonus.hbs
 6.DB models
 7.Controllers
-8.
+
+
+
+
+search problems: 
+search.hbs,main.hbs
+itemsController.js,itemsServices.js
+
+profile problems: 
+profile.hbs,main.hbs
+itemsController.js,itemsServices.js

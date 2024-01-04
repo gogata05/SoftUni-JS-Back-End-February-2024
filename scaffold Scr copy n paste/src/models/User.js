@@ -1,30 +1,30 @@
-
-
-
+//DB models: pp,db
+//require,minLength,maxLength,
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
 const SALT_ROUNDS = 10;
-
 const userSchema = new mongoose.Schema({
-    //copy register shape here:
+    //copy entity user shape here:
+
+
+    //copy entity user shape validations here:
     
 
     username: {//!
         type: String,
         require: true,
-        minLength: 4,
+        minLength: 3,//!
     },
     email: {
         type: String,
         require: true,
-        minLength: 10,
+        minLength: 10,//!
     },
     password: {
         type: String,
         require: true,
-        minLength: 4,
+        minLength: 4,//!
     }
 });
 
