@@ -3,7 +3,7 @@
 //Replace "buyingList" with the actual DB collection
 //Replace "enumNameProperty" with the actual "enum" property
 //Replace "firstSearchNameProperty" with the actual "name" property
-//check if DB property "owner" exists
+//check if "owner" DB property  exists
 
 const Items = require('../models/Items');
 const User = require('../models/User');
@@ -21,7 +21,14 @@ exports.update = (itemsId, itemsData) => Items.findByIdAndUpdate(itemsId, itemsD
 
 exports.getOne = (itemsId) => Items.findById(itemsId).populate('buyingList');//!
 
+//profile
 exports.getMyCreatedPost = (userId) => Items.find({ owner: userId }).lean();//!
+
+exports.getMyLikedPosts = (userId) => Items.find({ buyingList: userId}).lean();//!
+
+
+//home
+exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//get the last 3 posts from dash in home
 
 
 //Remove if "search" not bonus

@@ -17,6 +17,6 @@ exports.getOne = (courseId) => Course.findById(courseId).populate('signUpList');
 exports.getMyCreatedCourse = (userId) => Course.find({ owner: userId}).lean();
 
 
-exports.getMySignUp = (userId) => Course.find({ signUpList: userId}).lean();//?
+exports.getMyLikedPosts = (userId) => Course.find({ signUpList: userId}).lean();//?
 
-exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//?
+exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//get the last 3 posts only in home
