@@ -1,0 +1,49 @@
+{{!--
+//dashboard: dash1_hb_for_loop
+//copy/paste the main html here:
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+//--}}
+
+
+<main id="catalog">
+    <section class="game-market">
+        <h1>Game Trade Code</h1>
+
+        <div class="offer-list">
+            <!--some items-->
+            {{#each items}}
+            {{> item-card}}
+            {{else}}
+        </div>
+
+        <div class="no-offer">
+            <p>There are no game offers found!</p>
+        </div>
+        {{/each}}
+    </section>
+</main>
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- 
+<section id="viewCatalog" class="background-img">
+
+    <!--If there are one or more electronics-->
+    <div class="added-electronics">
+        {{#each items}}
+        {{> item-card}}
+        {{else}}
+    </div>
+
+    <!--If there are no electronics in catalog yet-->
+    <div class="guest">
+        There are no electronics found...
+    </div>
+
+    {{/each}}
+</section>
+--}}

@@ -1,0 +1,59 @@
+
+
+{{!-- 
+//login
+//copy/paste the main or the section html here:
+
+//add into the html:    action="/auth/login" method="POST"
+//add into the html:    name="" like                = for="" and  id=""
+//fix href="#" :        href="/auth/register"
+//--}}
+
+
+        <main>
+
+            <section id="login-page">
+
+                <div class="loginSection">
+                    <div class="info">
+                        <h2>"Hearing voices no one else can hear isn't a good sign, even in the wizarding world."</h2>
+                    </div>
+                    <form action="/auth/login" method="POST" class="loginForm">
+                        <h2>Login</h2>
+                        <ul class="noBullet">
+                            <li>
+                                <label for="email">Email:</label>
+                                <input type="text" class="inputFields" id="email" name="email" placeholder="alex@gmail.com" />
+                            </li>
+                            <li>
+                                <label for="password">Password:</label>
+                                <input type="password" class="inputFields" id="password" name="password" placeholder="*******" />
+                            </li>
+
+                            <li id="center-btn">
+                                <button id="login-btn">Login</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+
+            </section>
+
+        </main>
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+    {{!-- <main id="login">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="/auth/login" method="POST">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email..">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password..">
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="/auth/register">Register here</a></p>
+        </div>
+    </main> --}}

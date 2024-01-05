@@ -3,24 +3,26 @@
 //Replace "buyingList" with the actual DB collection
 //Replace "enumNameProperty" with the actual "enum" property
 //Replace "firstSearchNameProperty" with the actual "name" property
-
+//check if DB property "owner" exists
 
 const Items = require('../models/Items');
 const User = require('../models/User');
 
+exports.findOwner = (userId) => User.findById(userId).lean();
+
 exports.create = (itemsData) => Items.create(itemsData);
-
-exports.getAll = () => Items.find().lean();
-
-exports.getOne = (itemsId) => Items.findById(itemsId).populate('buyingList');//!
-
-exports.getMyCreatedPost = (userId) => Items.find({ buyingList: userId }).lean();//!
-
-exports.update = (itemsId, itemsData) => Items.findByIdAndUpdate(itemsId, itemsData);
 
 exports.delete = (itemsId) => Items.findByIdAndDelete(itemsId);
 
-exports.findOwner = (userId) => User.findById(userId).lean();//doesnt exist in search bonus
+exports.getAll = () => Items.find().lean();
+
+exports.update = (itemsId, itemsData) => Items.findByIdAndUpdate(itemsId, itemsData);
+
+
+exports.getOne = (itemsId) => Items.findById(itemsId).populate('buyingList');//!
+
+exports.getMyCreatedPost = (userId) => Items.find({ owner: userId }).lean();//!
+
 
 //Remove if "search" not bonus
 exports.search = (itemsName1, itemsName2) => //!

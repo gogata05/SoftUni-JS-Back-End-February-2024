@@ -1,0 +1,56 @@
+
+
+{{!-- 
+//login
+//copy/paste the main html here:
+//add into the html:                 action="/auth/login" method="POST"
+//add into the html:      name="" -> email or username and password          like for,id
+//fix href="#" :                     href="/auth/register"
+//--}}
+
+
+    <main id="login">
+        <!-- In case of error, you should display div with class "errorContainer" -->
+        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+
+        <!-- <div>
+            <div class="errorContainer">
+                <p>Error</p>
+            </div>
+        </div> -->
+
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="/auth/login" method="POST">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email..">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password..">
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="/auth/register">Register here</a></p>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- 
+<section id="loginPage">
+    <form id='loginForm' action="/auth/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Email">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password">
+
+        <input type="submit" class="register" value="Login">
+    </form>
+</section> 
+--}}

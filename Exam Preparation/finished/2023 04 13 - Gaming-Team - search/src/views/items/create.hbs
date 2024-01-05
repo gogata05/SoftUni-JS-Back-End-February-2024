@@ -1,0 +1,101 @@
+
+
+{{!-- 
+//create
+//copy/paste the main html here:
+//add into the html:                         action="/items/create" method="POST"
+//add into the html:                         name="" like                = for="" and  id=""
+//make shape judging by the form "id" shape:
+//copy shape here:
+platform
+name
+image
+price
+genre
+description
+//--}}
+
+
+<main id="create">
+ <!-- In case of error, you should display div with class "errorContainer" -->
+        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+
+        <!-- <div>
+            <div class="errorContainer">
+                <p>Error</p>
+            </div>
+        </div> -->
+        <section id="create-container">
+            <div class="create-container-info">
+                <h1>Create Game Code Offer</h1>
+                <h4>Post your code to sell</h4>
+                <form action="/items/create" method="POST">
+                    <label>Platform:</label>
+                    <select id="platform" name="platform">
+                        <option value="">-------</option>
+                        <option value="PC">PC</option>
+                        <option value="Nintendo">Nintendo</option>
+                        <option value="PS4">PS4</option>
+                        <option value="PS5">PS5</option>
+                        <option value="XBOX">XBOX</option>
+                    </select>
+                    <label>Name:</label>
+                    <input type="text" id="name" name="name">
+                    <label>Image:</label>
+                    <input type="text" id="image" name="image" placeholder="http://...">
+                    <label>Price:</label>
+                    <input type="number" id="price" name="price">
+                    <label>Genre:</label>
+                    <input type="text" id="genre" name="genre">
+                    <label>Description:</label>
+                    <textarea id="description" name="description"></textarea>
+
+                    <input type="submit" id="btn" value="CREATE"></input>
+                </form>
+            </div>
+        </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- 
+<section id="createPage">
+    <form id='createForm' action="/items/create-offer" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Name...">
+
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" placeholder="Type...">
+
+        <label for="production">Year of Production:</label>
+        <input type="number" id="production" name="production" placeholder="Year of Production...">
+
+        <label for="exploitation">Years of Exploitation:</label>
+        <input type="number" id="exploitation" name="exploitation" placeholder="Year of Exploitation...">
+
+        <label for="damages">Damages:</label>
+        <input type="text" id="demages" name="damages" placeholder="Demages...">
+
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" placeholder="Image...">
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" placeholder="Price...">
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" placeholder="Description...">
+
+        <input type="submit" class="create" value="Create Offer">
+    </form>
+</section> 
+--}}

@@ -1,0 +1,72 @@
+
+{{!-- 
+//main: if_error_hb, if_main_hb,
+//copy/paste the main or the section html here:
+
+//1.add "body" before footer:             {{{body}}}                         
+//2.replace "href" link into the html:    href="/static/css/styles.css"      *
+//2.1.remove "." in "<img>" "href" link:
+//3.copy/paste a "error" div" comment:    hb_error_if
+//4.add user/guest view:                  hb_main_if
+//5.fix the <title></title>:
+
+//add href everywhere: "/" "/items/dashboard" "/items/create" "/auth/login" "/auth/register" "/auth/logout"
+//add href "search" or "profile" if they exists: "/items/search"
+//--}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wizard Creatures</title>
+    <!-- Do not forget to change the path to the css file -->
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div id="box">
+        <!--
+            <div class="error-container">
+                <p>Error</p>
+            </div>-->
+        {{#if error}}
+        <div>
+            <div class="error-container"><!--!-->
+                <p>{{error}}</p>
+            </div>
+        </div>
+        {{/if}}
+
+        <nav>
+            <img src="/static/img/logo.png" alt="logo">
+            <ul class="menu">
+                <!--For all users: Home,Dashboard-->
+                <!--!-->
+                <!--!-->
+                <li><a href="/">Home</a></li>
+                <li><a href="/items/dashboard">All Posts</a></li>
+                {{#if user}}
+                <!--For logged users: Add,Bonus,Logout-->
+                <!--!-->
+                <!--!-->
+                <!--!-->
+                <!-- Logged users -->
+                <li><a href="/items/create">Create Post</a></li>
+                <li><a href="/items/profile">Profile</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{else}}
+                <!--For guest user: Login,Register-->
+                <!--!-->
+                <!--!-->
+                <!-- Guest users -->
+                <li><a href="/auth/register">Register</a></li>
+                <li><a href="/auth/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+       {{{body}}}
+        <footer>
+            © JS Back-End Exam 2023
+        </footer>
+    </div>
+</body>
+</html>

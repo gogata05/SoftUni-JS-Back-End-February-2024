@@ -1,0 +1,82 @@
+
+
+{{!-- 
+//search: search_hbs
+//copy/paste the main or the section html here:
+//add into the html:                     action="/items/search" method="GET"
+//add specific names:                    name="searchName1"  name="searchName2"
+//if item-card is different
+use search-card:             
+//--}}
+
+    <main id="search">
+    <section class="game-search">
+        <h1>Search</h1>
+    
+        <form class="search-form" action="/items/search" method="GET">
+            <input type="text" class="search-game" name="searchName1" placeholder="Search here...">
+            <select id="platform" name="searchName2">
+                <option value="">-------</option>
+                <option value="PC">PC</option>
+                <option value="Nintendo">Nintendo</option>
+                <option value="PS4">PS4</option>
+                <option value="PS5">PS5</option>
+                <option value="XBOX">XBOX</option>
+            </select>
+            <button type="submit" class="btn-search">Search</button>
+        </form>
+
+        <!--If there are matches after search-->
+        {{#if items}}
+        <div class="search-result"><!--!-->
+            <div class="search-list"><!--!-->
+                {{#each items}}
+                {{> item-card}}
+                {{/each}}
+            </div>
+        </div>
+        {{else}}
+        <!--If there are no matches-->
+        <div class="no-match"><!--!-->
+            <!--!-->
+            <p>no match was found!</p>
+        </div>
+        {{/if}}
+    </section>
+    </main>
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- 
+<section class="search">
+    <h1>Search</h1>
+
+    <form class="search-form" action="/items/search" method="GET">
+        <input type="text" class="search-name" name="searchName" placeholder="Search Name...">
+        <input type="text" class="search-type" name="searchType" placeholder="Search Type...">
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+
+    <!--If there are matches after search-->
+    {{#if items}}
+    <div class="search-result">
+        <div class="search-list">
+            {{#each items}}
+            {{> item-card}}
+            {{/each}}
+        </div>
+
+    </div>
+    {{else}}
+    <!--If there are no matches-->
+    <div class="no-match">
+        <p>No match was found!</p>
+    </div>
+    {{/if}}
+</section>
+--}}

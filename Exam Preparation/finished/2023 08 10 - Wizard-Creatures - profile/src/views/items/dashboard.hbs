@@ -1,0 +1,51 @@
+
+
+{{!--
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+//--}}
+
+<main>
+    <section id="catalog">
+        <h1>All posts</h1>
+        <div class="band">
+            <!--some items-->
+            {{#each items}}
+            {{> item-card}}
+            {{else}}
+            <!--!-, </div> here-->
+        </div>
+        <!--no items-->
+        <!--!-->
+        <div class="no-posts">
+            <p class="no-offer">There are no posts yet...</p>
+        </div>
+        {{/each}}
+    </section>
+</main>
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- <main id="catalog">
+ <section id="viewCatalog" class="background-img">
+
+    <!--If there are one or more electronics-->
+    <div class="added-electronics">
+        {{#each items}}
+        {{> item-card}}
+        {{else}}
+    </div>
+
+    <!--If there are no electronics in catalog yet-->
+    <div class="guest">
+        There are no electronics found...
+    </div>
+
+    {{/each}}
+ </section>
+</main> --}}

@@ -1,0 +1,116 @@
+
+{{!-- 
+//main: if_error_hb, if_main_hb,
+//copy/paste the home section html here:
+//fix the <title></title>:
+//add "href" link into the html:       href="/static/css/styles.css"
+//add "body" before footer:            {{{body}}}
+//copy/paste a commented div "error":  hb_error_if
+//add user/guest view:                 hb_main_if
+
+//add href everywhere: "/" "/items/dashboard" "/items/create" "/auth/login" "/auth/register" "/auth/logout"
+//add href "search" or "profile" if they exists: "/items/search"
+//--}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Team</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+        <!-- <div>
+            <div class="errorContainer">
+                <p>Error</p>
+            </div>
+        </div> -->
+        
+            {{#if error}}
+            <div>
+                <div class="errorContainer"><!--!-->
+                    <p>{{error}}</p>
+                </div>
+            </div>
+            {{/if}}
+            
+    <header class="header">
+        <nav>
+            <img src="/static/images/logo.jpg" class="logo">
+            <ul>
+                <!--For all users: Home,Dashboard-->
+                <li><a href="/">Home</a></li>
+                <li><a href="/items/dashboard">All Games Code</a></li>
+                {{#if user}}
+                <!--For logged users: Add,Bonus,Logout-->
+                <li><a href="/items/create">Create Game Offer</a></li>
+                <li><a href="/items/search">Search</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{else}}
+                <!--For guest user: Login,Register-->
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+    {{{body}}}
+    <footer>
+        <p>Back-End 2023</p>
+    </footer>
+</body>
+</html>
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second Hand Electronics</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+    {{#if error}}
+    <div>
+        <div class="errorContainer">
+            <p>{{error}}</p>
+        </div>
+    </div>
+    {{/if}}
+
+    <div id="container">
+        <nav>
+            <ul>
+                <!--For all users-->
+                <li><a href="/">Home</a></li>
+                <li><a href="/items/dashboard">Catalog</a></li>
+
+                {{#if user}}
+                <!--For loggin users-->
+                <li><a href="/items/create">Create Offer</a></li>
+                <li><a href="/items/search">Search</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+
+                {{else}}
+                <!--For guest user-->
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{/if}}
+
+            </ul>
+        </nav>
+   
+        {{{body}}}
+      
+        <footer>@SoftUni - JS Back-End - Second Hand Electronics 2023</footer>
+    </div>
+</body>
+</html> 
+--}}

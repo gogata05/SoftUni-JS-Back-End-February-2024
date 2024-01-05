@@ -1,0 +1,54 @@
+
+
+{{!-- 
+//Profile: profile_hb
+//copy/paste the main or the section html here: --}}
+{{!-- //if item-card is different
+use profile-card: --}}
+
+
+
+<main>
+    <section id="my-posts">
+        <h1>My post</h1>
+
+        <div class="my-container">
+            <!--If there are posts-->
+            {{#if items}}
+                {{#each items}}
+                    {{> profile-card}}
+                {{/each}}
+            {{else}}
+            <!--no posts-->
+            <!--!-->
+            <div class="no-posts">
+                <p class="no-offer">There are no own posts yet...</p>
+            </div> 
+            {{/if}}
+        </div>
+    </section>
+
+</main>
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- <main> 
+    <section id="my-posts">
+        <h1>My post</h1>
+        <div class="my-container">
+            <!-- If there are own posts in the database display each of them -->
+            {{#if items}}
+                {{#each items}}
+                    {{> item-card}}
+                {{/each}}
+            {{else}}
+            <!-- If there are still no own posts in the database display: -->
+            <div class="no-posts">
+                <p class="no-offer">There are no own posts yet...</p>
+            </div>
+            {{/if}}
+
+        </div>
+    </section>
+</main> --}}

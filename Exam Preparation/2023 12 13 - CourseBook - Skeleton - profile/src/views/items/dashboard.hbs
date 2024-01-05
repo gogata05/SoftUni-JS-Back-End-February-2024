@@ -1,0 +1,39 @@
+
+
+{{!--
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+//--}}
+
+
+
+
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+<main id="catalog">
+ <section id="viewCatalog" class="background-img">
+
+    <div class="added-electronics">
+    <!--some items-->
+        {{#each items}}
+        {{> item-card}}
+        {{else}}
+    </div>
+
+    <!--If there are no electronics in catalog yet-->
+    <div class="guest">
+        There are no electronics found...
+    </div>
+
+    {{/each}}
+ </section>
+</main>
