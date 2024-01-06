@@ -5,44 +5,35 @@
 const mongoose = require('mongoose');
 let itemsSchema = new mongoose.Schema({
     //copy entity shape here:
-// ⦁	title - string (required), - at least 5 characters
-// ⦁	type - string (required), - minimum of 3 characters long
-// ⦁	certificate - string (required), - 2 characters long
-// ⦁	image: string (required), - http:// or https://
-// ⦁	description: string (required), - minimum of 10 characters long
-// ⦁	price – number (required), - positive number
-// ⦁	signUpList - a collection of Users (a reference to the User model)
-// ⦁	owner - object ID (a reference to the User model)
-    //copy entity shape validations here:
-    //pp snippet here:
-    name: {
+    title: {
         type: String,
-        required: true,
-        minlength: 5,
+        require: true,
+        minLength: 5,
     },
     type: {
         type: String,
-        required: true,
-        minlength: 3,
+        require: true,
+        minLength: 5,
     },
     certificate: {
         type: String,
-        required: true,
-        minlength: 2,
+        require: true,
+        minLength: 2,
     },
     image: {
         type: String,
-        required: true,
-        validate: /^https?:\/\//i
+        require: true,
+        validate: /^https?:\/\//i,
+        
     },
     description: {
         type: String,
-        required: true,
-        minlength: 10,
+        require: true,
+        minLength: 10,
     },
     price: {
         type: Number,
-        required: true,
+        require: true,
         minValue: 0,
     },
     signUpList: [
@@ -54,13 +45,16 @@ let itemsSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    },
-
-});
+    }
+}, 
+// {timestamps: true}//?
+);
 
 itemsSchema.method('getCollection', function () {
-    return this.signUpList.map(x => x._id);//!//replace: "signUpList" with the actual collection
+    return this.buyingList.map(x => x._id);//!//replace: "buyingList" with the actual collection
 })
-
+// courseSchema.method('getUsername', function () {
+//     return this.signUpList.map(x => x.username);
+// })//?
 let Items = mongoose.model('Items', itemsSchema);
 module.exports = Items;

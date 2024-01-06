@@ -1,0 +1,78 @@
+
+
+{{!-- 
+//search: search_hbs
+//copy/paste the main or the section html here:
+
+//add into the html:                     action="/items/search" method="GET"
+//add specific names:                    name="searchName1"  name="searchName2"
+//if item-card is different
+use search-card:             
+//--}}
+
+<main class="search">
+    <!-- Search Page (Only for logged-in users) -->
+    <section id="search">
+        <h2>Search by Location</h2>
+        <form class="search-wrapper cf" method="" action="#">
+            <input id="#search-input" type="text" name="" placeholder="Search here..." required />
+            <button type="submit">Search</button>
+        </form>
+        <div id="search-container">
+            <ul class="card-wrapper">
+                <!-- Display a li with information about every post (if any)-->
+                <li class="card">
+                    <img src="./static/images/animal3.jpg"/>
+                    <p>
+                        <strong>Name: </strong><span class="name">Mama and Baby Lolly</span>
+                    </p>
+                    <p>
+                        <strong>Location: </strong><span class="location">Toronto Zoo</span>
+                    </p>
+                    <p><strong>Need of:</strong><span class="need-of">Food</span></p>
+                    <a class="details-btn" href="#">Details</a>
+                </li>
+            </ul>
+            <!-- Display an h2 if there are no posts -->
+            <!-- <div id="no-post">
+                <h2>There are no results found.</h2>
+            </div> -->
+        </div>
+    </section>
+</main> 
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+<main id="search">
+ <section class="search">
+    <h1>Search</h1>
+
+    <form class="search-form" action="/items/search" method="GET">
+        <input type="text" class="search-name" name="searchName1" placeholder="Search Name...">
+        <input type="text" class="search-type" name="searchName2" placeholder="Search Type...">
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+
+    <!--If there are matches after search-->
+    {{#if items}}
+    <div class="search-result">
+        <div class="search-list">
+            {{#each items}}
+            {{> item-card}}
+            {{/each}}
+        </div>
+
+    </div>
+    {{else}}
+    <!--If there are no matches-->
+    <div class="no-match">
+        <p>No match was found!</p>
+    </div>
+    {{/if}}
+ </section>
+</main>

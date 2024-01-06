@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const courseServices = require('../services/courseServices');
 const { isAuth } = require('../middleware/authMiddleware');
 
@@ -12,7 +11,6 @@ async function isOwner(req, res, next) {
         next();
     }
 }
-
 async function checkIsOwner(req, res, next) {
     let course = await courseServices.getOne(req.params.courseId);
 
@@ -43,7 +41,8 @@ router.post('/create-course', isAuth, async (req, res) => {
 
 });
 
-function getErrorMessage(error) {
+function getErrorMessage(error)//
+ {
     let errorsArr = Object.keys(error.errors);
 
     if (errorsArr.length > 0) {

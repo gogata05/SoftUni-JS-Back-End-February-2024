@@ -6,10 +6,10 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 const userSchema = new mongoose.Schema({
     //copy entity user shape here:
-    //username - 2
-    //email - 10
-    //password - 4
-    
+    //username
+    //email
+    //password
+
     username: {//!
         type: String,
         require: true,

@@ -43,7 +43,7 @@ let courseSchema = new mongoose.Schema({
         ref: 'User'
     }
 }, {
-    timestamps: true
+    timestamps: true//?
 });
 
 courseSchema.method('getSignUp', function () {
@@ -52,7 +52,7 @@ courseSchema.method('getSignUp', function () {
 
 courseSchema.method('getUsername', function () {
     return this.signUpList.map(x => x.username);
-})
+})//?
 
 let Course = mongoose.model('Course', courseSchema);
 

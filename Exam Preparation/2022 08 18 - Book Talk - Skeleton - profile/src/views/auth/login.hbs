@@ -1,0 +1,43 @@
+
+
+{{!-- 
+//login
+//copy/paste the main or the section html here:
+
+//add into the html:    action="/auth/login" method="POST"
+//add into the html:    name="" like                = for="" and  id=""
+//fix href="#" :        href="/auth/register"
+//--}}
+
+<section class="login-form-container">
+    <form action="">
+        <h3>Login</h3>
+        <label>Email</label>
+        <input type="email" name="" class="box" id="">
+        <label>Password</label>
+        <input type="password" name="" class="box" id="">
+        <input type="submit" value="Login" class="btn">
+        <p>Don't have an account ? <a href="#">Create one</a></p>
+    </form>
+</section>
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+    <main id="login">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="/auth/login" method="POST">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email..">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password..">
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="/auth/register">Register here</a></p>
+        </div>
+    </main>

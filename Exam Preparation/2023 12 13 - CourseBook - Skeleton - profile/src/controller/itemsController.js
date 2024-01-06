@@ -3,19 +3,31 @@
 //Replace "buyingList" with the actual DB collection
  
 const router = require('express').Router();
-const itemsServices = require('../services/itemsServices')
+const itemServices = require('../services/itemServices')
+const { isAuth } = require('../middleware/authMiddleware');
+
+async function checkIsOwner(req, res, next) {
+    let item = await itemServices.getOne(req.params.itemId);
+
+    if (item.owner == req.user._id) {
+        next();
+    } else {
+        res.redirect(`/item/${req.params.itemId}/details`);
+    }
+}
+
 
 router.get('/dashboard', async (req, res) => {
-    let items = await itemsServices.getAll();
+    let items = await itemServices.getAll();
     res.render('items/dashboard', { items });
 });
 
-router.get('/create', (req, res) => {
+router.get('/create',isAuth, (req, res) => {
     res.render('items/create');
 });
-router.post('/create', async (req, res) => {
+router.post('/create',isAuth, async (req, res) => {
     try {
-        await itemsServices.create({ ...req.body, owner: req.user });
+        await itemServices.create({ ...req.body, owner: req.user });
         res.redirect('/items/dashboard');
     } catch (error) {
         console.log(error);
@@ -25,49 +37,57 @@ router.post('/create', async (req, res) => {
 
 
 router.get('/:itemsId/details', async (req, res) => {
-    let items = await itemsServices.getOne(req.params.itemsId);
-    let itemsData = await items.toObject();
-    let isOwner = itemsData.owner == req.user?._id;
-    let itemsOwner = await itemsServices.findOwner(items.owner).lean();
+    let item = await itemServices.getOne(req.params.itemsId);
+    let itemData = await item.toObject();
+    let isOwner = itemData.owner == req.user?._id;
+
+    let itemOwner = await itemServices.findOwner(item.owner).lean();
     
-    let likesCount = itemsData.buyingList.length;//!
-    let liker = items.getCollection();
+    //ForEach users emails/usernames SplittedBy(',')
+    let itemInfo = itemData.buyingList;//!
+    let emails = [];
+    itemInfo.forEach((x) => emails.push(x.email));//!
+    emails.join(", ");
+    // console.log(itemInfo);
+        
+    let likesCount = itemData.buyingList.length;//!
+    let liker = item.getCollection();
     let isLiked = req.user && liker.some(c => c._id == req.user?._id);
 
-    res.render('items/details', { ...itemsData, isOwner, isLiked, likesCount, itemsOwner});
+    res.render('items/details', { ...itemData, isOwner, isLiked, likesCount, itemOwner,emails});
 });
 
 router.get('/:itemsId/like', async (req, res) => 
 {
     const itemsId = req.params.itemsId
-    let items = await itemsServices.getOne(itemsId);
+    let items = await itemServices.getOne(itemsId);
 
     items.buyingList.push(req.user._id);//!
     await items.save();
     res.redirect(`/items/${req.params.itemsId}/details`);
 });
 
-router.get('/:itemsId/edit', async (req, res) => {
+router.get('/:itemsId/edit',checkIsOwner, async (req, res) => {
     const itemsId = req.params.itemsId
-    let items = await itemsServices.getOne(itemsId);
+    let items = await itemServices.getOne(itemsId);
     res.render('items/edit', { ...items.toObject() })
 });
-router.post('/:itemsId/edit', async (req, res) => {
+router.post('/:itemsId/edit',checkIsOwner, async (req, res) => {
     try {
-        const itemsId = req.params.itemsId;
-        const itemsData = req.body;
-        console.log(itemsData);
-        await itemsServices.update(itemsId, itemsData);
-        res.redirect(`/items/${itemsId}/details`);
+        const itemId = req.params.itemsId;
+        const itemData = req.body;
+        console.log(itemData);
+        await itemServices.update(itemId, itemData);
+        res.redirect(`/items/${itemId}/details`);
     } catch (error) {
         res.render('items/edit', { error: error.message})
     }
 
 });
 
-router.get('/:itemsId/delete', async (req, res) => {
-    const itemsId = req.params.itemsId;
-    await itemsServices.delete(itemsId);
+router.get('/:itemId/delete', checkIsOwner, async (req, res) => {
+    const itemId = req.params.itemsId;
+    await itemServices.delete(itemId);
     res.redirect('/items/dashboard');
 });
 
@@ -85,10 +105,10 @@ router.get('/search', async (req, res) => {
     console.log(itemsName1);//1//!
     console.log(itemsName2);//2//!
 
-    let items = await itemsServices.search(itemsName1, itemsName2);//1,2//!
+    let items = await itemServices.search(itemsName1, itemsName2);//1,2//!
 
     if(items == undefined) {
-        items = await itemsServices.getAll();
+        items = await itemServices.getAll();
     }    
     res.render('search', {items});
 });    

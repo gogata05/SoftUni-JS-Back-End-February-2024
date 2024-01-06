@@ -1,0 +1,117 @@
+
+{{!-- 
+//main: if_error_hb, if_main_hb,
+//copy/paste the main or the section html here:
+
+//1.add "body" before footer:             {{{body}}}                         
+//2.replace "href" link into the html:    href="/static/css/styles.css"      *
+//2.1.remove "." in "<img>" "href" link:
+//3.copy/paste a "error" div" comment:    hb_error_if
+//4.add user/guest view:                  hb_main_if
+//5.fix the <title></title>:
+
+//add href everywhere: "/" "/items/dashboard" "/items/create" "/auth/login" "/auth/register" "/auth/logout"
+//add href "search" or "profile" if they exists: "/items/search" "/items/profile"
+//--}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/styles.css" />
+    <title>Home Page</title>
+</head>
+
+<body>
+
+    <div>
+        <div class="errorContainer">
+            <p>Error</p>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <header>
+            <!-- Navigation -->
+            <nav>
+                <div>
+                    <a href="#">Home</a>
+                    <a href="#">Dashboard</a>
+                    <a href="#">Search</a>
+                </div>
+
+                <!-- Logged-in users -->
+                <div class="user">
+                    <a href="#">Add Animal</a>
+                    <a href="#">Logout</a>
+                </div>
+
+                <!-- Guest users -->
+                <div class="guest">
+                    <a href="#">Login</a>
+                    <a href="#">Register</a>
+                </div>
+            </nav>
+        </header>
+        {{{body}}}
+        <footer>
+            <p>@Friendly World</p>
+        </footer>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second Hand Electronics</title>
+    <link rel="stylesheet" href="/static/css/styles.css">{{!--!--}}
+</head>
+<body>
+
+    {{#if error}}
+    <div>
+        <div class="errorContainer">
+            <p>{{error}}</p>
+        </div>
+    </div>
+    {{/if}}
+
+    <div id="container">
+        <nav>
+            <ul>
+                <!--For all users: Home,Dashboard-->
+                <li><a href="/">Home</a></li>
+                <li><a href="/items/dashboard">Catalog</a></li>
+
+                {{#if user}}
+                <!--For logged users: Add,Bonus,Logout-->
+                <li><a href="/items/create">Create Offer</a></li>
+                <li><a href="/items/search">Search</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+
+                {{else}}
+                <!--For guest user: Login,Register-->
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{/if}}
+
+            </ul>
+        </nav>
+       {{{body}}}
+        <footer>@SoftUni - JS Back-End - Second Hand Electronics 2023</footer>
+    </div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 const router = require('express').Router();
 const courseServices = require('../services/courseServices');
-const { isAuth } = require('../middleware/authMiddleware');//
+const { isAuth } = require('../middleware/authMiddleware');
 
 router.get('/', async (req, res) => {
     let getTop = await courseServices.getTopThree().lean();
