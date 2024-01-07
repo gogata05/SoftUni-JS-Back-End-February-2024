@@ -1,0 +1,35 @@
+
+
+
+
+
+{{!-- 
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//replace text with variables:      {{name}} (check create.hbs for shape)
+//copy shape here from create.hbs:
+    //title
+    //type
+    //certificate
+    //image
+    //description
+    //price
+
+
+--}}
+
+ <article class="all-course-card">
+     <article class="all-course-card-image">
+         <img src="{{image}}">
+     </article>
+     <article class="all-course-card-content">
+         <h2>{{title}}</h2>
+         <h3>Type: {{type}}</h3>
+         <h3>Price: €{{price}}</h3>
+     </article>
+     <article class="all-course-card-buttons">
+         <a  href="/items/{{_id}}/details" class="btn-details">Details</a>
+     </article>
+ </article>
+
+

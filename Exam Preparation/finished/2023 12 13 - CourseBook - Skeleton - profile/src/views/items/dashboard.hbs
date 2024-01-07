@@ -1,0 +1,28 @@
+
+
+{{!--
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+//--}}
+
+<main>
+    <section id="all-course-page">
+        <article class="all-course-title">
+            <h1>All Courses</h1>
+        </article>
+        <!--some items-->
+        {{#each items}}
+        {{> item-card}}
+        {{else}}    
+        <!--no items-->
+        <!--!-->
+        <article class="not-available-courses">
+            <h1>No course created yet.</h1>
+        </article> 
+        {{/each}}
+    </section>
+</main>
+
