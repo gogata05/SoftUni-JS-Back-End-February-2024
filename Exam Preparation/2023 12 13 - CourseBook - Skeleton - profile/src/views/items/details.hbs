@@ -1,7 +1,7 @@
 
 
 {{!-- 
-//details: details_hbs
+//details: details_hbs, if_if_else
 //copy/paste the main or the section html here:
 
 //fix href="#" :                      href="/items/{{_id}}/edit"
@@ -9,8 +9,12 @@
 //fix href="#" :                      href="/items/{{_id}}/like"
 //replace src with image shape:       src="{{image}}"
 //Add likes count:                    {{likesCount}}
-//Add postOwner.email:                {{postOwner.email}}
-//Add postOwner.username:             {{postOwner.username}}
+//Add the postOwner email:            {{postOwner.email}}
+//Add the postOwner username:         {{postOwner.username}}
+
+//Add [] likedUsersUsernames          {{likedUsersUsernameString}}
+//Add [] likedUsersIds                {{likedUsersIds}}
+//Add [] likedUsersEmails             {{likedUsersEmailsString}}
 //replace text with variables:        {{name}}
 //copy shape here from create.hbs:
     //title
@@ -36,20 +40,13 @@
                 <h3>Certificate: {{certificate}}</h3>
                 <h3>Price: €{{price}}</h3>
                 <h3>By: {{postOwner.email}}</h3>
-                {{#if likes}}
+                {{#if likedUsersUsernameString}}
                 {{!--!--}}
-                   
+                <h4>Signed By: {{likedUsersUsernameString}}</h4>{{!-- likedBy --}}
                 {{else}}
                 {{!--!--}}
-                   
-                {{/if}}
-
-
-
-                <!--If there are sign up users-->
-                <h4>Signed By: {{likes}}</h4>{{!-- likedBy --}}
-                <!--If there are no sign up users-->
                 <h4>Nobody has signed in for this course yet</h4>
+                {{/if}}
             </div>
             <div class="details-container-content">
                 <p>{{name}}</p>
@@ -69,21 +66,18 @@
                       {{#if isLiked}}
                         <!--If user liked-->
                         <!--!-->
-                <a href="/items/{{_id}}/like">Sign up</a>
+                        <p class="sign-up">You've already signed up for this course!</p>
                       {{else}}
                         <!--If user didn't liked-->
                         <!--!-->
-                <!-- logged in user who has already sign up for the course-->
-                <p class="sign-up">You've already signed up for this course!</p>
-            
+                      <a href="/items/{{_id}}/like">Sign up</a>
                       {{/if}}
                   {{/if}}
-              <!-- </div> -->
               <!--!-->
+            </div>
             
             {{/if}}
 
-            </div>
         </div>
     </main>
 
@@ -95,7 +89,7 @@
 
 {{!--//Example1--}}
 {{!--//Delete later--}}
-<main>
+{{!-- <main>
     <section id="details-page">
         <div class="main_card">
             <div class="card_left">
@@ -162,4 +156,4 @@
             </div>
         </div>
     </section>
-</main>
+</main> --}}

@@ -15,12 +15,12 @@ router.get('/', (req, res) => {
 router.get('/items/profile',isAuth, async (req, res) => {
     let userId = req.user._id;
     
-    let createdProfilePosts = await itemServices.getMyCreatedPost(userId);
+    let createdPosts = await itemServices.getMyCreatedPost(userId);
     let likedPosts = await itemServices.getMyLikedPosts(userId);
     let owner = await itemServices.findOwner(userId);
     console.log(owner);
     
-    res.render('profile', { createdProfilePosts, likedPosts, owner })
+    res.render('profile', { createdPosts, likedPosts, owner })
 })
 
 

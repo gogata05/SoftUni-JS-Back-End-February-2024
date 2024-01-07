@@ -46,24 +46,24 @@ router.get('/:itemsId/details', async (req, res) => {
     
     
     let likedPostsList = itemData.buyingList;//!
+    let likesCount = itemData.buyingList.length;//!
     
     ////Users info who liked the post:
     //usernames
     let likedUsersUsernames = course.getUsernames();//SplitBy(',') is by default 
-    let likedUsersUsernameString = likedUsersUsernames.join(", ");//!
+    let likedUsersUsernamesString = likedUsersUsernames.join(", ");//!
     //emails
     let likedUsersEmails = course.getEmails();
     let likedUsersEmailsString  = likedUsersEmails.join(", ");//!
 
 
-    let likesCount = itemData.buyingList.length;//!
     let likerIds = item.getLikes();
     let isLiked = req.user && likerIds.some(c => c._id == req.user?._id);
 
     res.render('items/details', { ...
         itemData, isOwner, isLiked,
         likesCount, postOwner, likedPostsList,
-        likedUsersUsernameString, likedUsersEmailsString });
+        likedUsersUsernamesString, likedUsersEmailsString });
 });
 
 router.get('/:itemsId/like', async (req, res) => 

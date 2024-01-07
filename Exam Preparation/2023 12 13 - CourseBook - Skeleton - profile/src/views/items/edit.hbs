@@ -20,34 +20,36 @@
 //--}}
 
 
- <main>
-        <section id="edit-container">
-            <div class="edit-container-info">
-                <h1>Edit Course</h1>
-                <form>
-                    <label>Title:</label>
-                    <input name="" type="text" id="title" value="Classroom Management Essentials">
+<main>
+    <section id="edit-container">
+        <div class="edit-container-info">
+            <h1>Edit Course</h1>
+            <form action="/items/{{_id}}/edit" method="POST">
+                <label>Title:</label>
+                <input name="title" type="text" id="title" value="{{title}}">
 
-                    <label>Type:</label>
-                    <input name="" type="text" id="type" value="Management">
+                <label>Type:</label>
+                <input name="type" type="text" id="type" value="{{type}}">
 
-                    <label>Certificate:</label>
-                    <input name="" type="text" id="certificate" value="Yes">
+                <label>Certificate:</label>
+                <input name="certificate" type="text" id="certificate" value="Yes">
 
-                    <label>Image:</label>
-                    <input name="" type="text" id="image" placeholder="http://..." value="https://cdn.pixabay.com/photo/2020/08/09/14/25/business-5475660_1280.jpg">
+                <label>Image:</label>
+                <input name="image" type="text" id="image" placeholder="http://..."
+                    value="{{image}}">
 
-                    <label>Description:</label>
-                    <textarea id="content" name="">Learn how to manage your classroom and spend more time teaching rather than disciplining</textarea>
+                <label>Description:</label>
+                <textarea id="content"
+                    name="description">{{description}}</textarea>
 
-                    <label>Price:</label>
-                    <input name="" type="number" id="price" value="25">
+                <label>Price:</label>
+                <input name="price" type="number" id="price" value="{{price}}">
 
-                    <input type="submit" id="btn" value="Edit">
-                </form>
-            </div>
-        </section>
-    </main>
+                <input type="submit" id="btn" value="Edit">
+            </form>
+        </div>
+    </section>
+</main>
 
 
 
@@ -56,7 +58,7 @@
 
 {{!--//Example1--}}
 {{!--//Delete later--}}
-<main id="edit">
+{{!-- <main id="edit">
  <section id="editPage">
     <form id='editForm' action="/items/{{_id}}/edit" method="POST">
         <label for="name">Name:</label>
@@ -89,4 +91,4 @@
         <input type="submit" class="edit" value="Edit Offer">
     </form>
  </section>
-</main>
+</main> --}}

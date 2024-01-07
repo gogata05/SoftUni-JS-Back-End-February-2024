@@ -53,15 +53,18 @@ let itemsSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }
-}, 
-// {timestamps: true}//?
+}
+,{timestamps: true} //adds "createdAt" and "updatedAt" post properties
 );
 
-itemsSchema.method('getCollection', function () {
-    return this.buyingList.map(x => x._id);//!//replace: "buyingList" with the actual collection
+itemsSchema.method('getLikes', function () {
+    return this.signUpList.map(x => x._id);//!
 })
-// courseSchema.method('getUsername', function () {
-//     return this.signUpList.map(x => x.username);
-// })//?
+itemsSchema.method('getUsernames', function () {
+    return this.signUpList.map(x => x.username);//!
+})
+itemsSchema.method('getEmails', function () {
+    return this.signUpList.map(x => x.email);//!
+})
 let Items = mongoose.model('Items', itemsSchema);
 module.exports = Items;

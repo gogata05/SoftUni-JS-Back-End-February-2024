@@ -53,6 +53,9 @@ function getErrorMessage(error)//
 
 }
 
+{/* <h2 class="created-course-count">Total Created Course: {{items.length}}</h2> */}
+{/* <h2 class="sign-course-count">Total Sign up Course: {{likedPosts.length}}</h2> */}
+
 router.get('/:courseId/details', async (req, res) => {
     let course = await courseServices.getOne(req.params.courseId);
     let courseData = course.toObject();

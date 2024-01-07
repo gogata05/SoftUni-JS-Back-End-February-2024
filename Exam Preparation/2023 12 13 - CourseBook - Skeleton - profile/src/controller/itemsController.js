@@ -43,22 +43,29 @@ router.get('/:itemsId/details', async (req, res) => {
     let itemData = await item.toObject();
     let isOwner = itemData.owner == req.user?._id;
 
-    //postOwner.email / postOwner.username
+    //the postOwner.email / postOwner.username
     let postOwner = await itemServices.findOwner(item.owner).lean();
     
-    //ForEach users emails/usernames SplittedBy(',')
-    //Replace emails with username if needed
-    let likedPosts = itemData.signUpList;//!
-    let emails = [];
-    likedPosts.forEach((x) => emails.push(x.email));//!
-    emails.join(", ");
-    console.log(likedPosts);
-        
-    let likesCount = itemData.signUpList.length;//!
-    let liker = item.getCollection();
-    let isLiked = req.user && liker.some(c => c._id == req.user?._id);
+    
+    let likedPostsList = itemData.signUpList;//!
+    
+    ////Users info who liked the post:
+    //usernames
+    let likedUsersUsernames = course.getUsernames();//SplitBy(',') is by default 
+    let likedUsersUsernameString = likedUsersUsernames.join(", ");//!
+    //emails
+    let likedUsersEmails = course.getEmails();
+    let likedUsersEmailsString  = likedUsersEmails.join(", ");//!
 
-    res.render('items/details', { ...itemData, isOwner, isLiked, likesCount, postOwner,emails});
+
+    let likesCount = itemData.signUpList.length;//!
+    let likerIds = item.getLikes();
+    let isLiked = req.user && likerIds.some(c => c._id == req.user?._id);
+
+    res.render('items/details', { ...
+        itemData, isOwner, isLiked,
+        likesCount, postOwner, likedPostsList,
+        likedUsersUsernameString, likedUsersEmailsString });
 });
 
 router.get('/:itemsId/like', async (req, res) => 
