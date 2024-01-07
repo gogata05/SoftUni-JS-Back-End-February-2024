@@ -28,7 +28,7 @@ exports.getMyLikedPosts = (userId) => Items.find({ buyingList: userId}).lean();/
 
 
 //home
-exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//get the last 3 posts from dash in home
+exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//get the last 3 "created" posts from dash in home//for "updated" use "sort({updatedAt: -1})"
 
 
 //Remove if "search" not bonus

@@ -55,19 +55,20 @@ function getErrorMessage(error)//
 
 router.get('/:courseId/details', async (req, res) => {
     let course = await courseServices.getOne(req.params.courseId);
-
     let courseData = course.toObject();
-
     let isOwner = courseData.owner == req.user?._id;
+    
+    //postOwner.email / postOwner.username
+    let postOwner = await courseServices.findOwner(course.owner).lean();
 
-    let courseOwner = await courseServices.findOwner(course.owner).lean();
+    let likedUsersUsernames = course.getUsernames();//SplitBy(',') is default by handlebars!
+    let likedUsersEmails = course.getEmails();
+    
+    let likesCount = course.signUpList.length;//!
+    let likedUsersIds = course.getLikes();
+    let isLiked = req.user && likedUsersIds.some(c => c._id == req.user?._id);
 
-    let sign = course.getSignUp();
-    let signCount = course.getUsername();
-
-    let isSign = req.user && sign.some(c => c._id == req.user?._id);
-
-    res.render('course/details', { ...courseData, isOwner, isSign, signCount, courseOwner });
+    res.render('course/details', { ...courseData, isOwner, isLiked, likedUsersUsernames, postOwner ,likesCount});
 });
 
 router.get('/:courseId/sign', async (req, res) => {

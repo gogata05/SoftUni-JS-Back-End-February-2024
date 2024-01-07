@@ -4,15 +4,15 @@
             <img src="{{image}}">
         </div>
         <div class="details-container-info">
-            <h2>Titel: {{title}}</h2>
+            <h2>Title: {{title}}</h2>
             <h3>Type: {{type}}</h3>
             <h3>Certificate: {{certificate}}</h3>
             <h3>Price: €{{price}}</h3>
-            <h3>By: {{courseOwner.email}}</h3>
+            <h3>By: {{postOwner.email}}</h3> 
 
-            {{#if signCount}}
+            {{#if likedUsersUsernames}}
             <!--If there are followers-->
-            <h4>Signing By: {{signCount}}</h4>
+            <h4>Signing By: {{likedUsersUsernames}}</h4>
             {{else}}
             <!--If there are no followers-->
             <h4>Nobody has signed in for this course yet</h4>
@@ -29,7 +29,7 @@
             <a href="/course/{{_id}}/delete">Delete</a>
             <!-- logged in user who has not yet followed the blog-->
             {{else}}
-            {{#if isSign}}
+            {{#if isLiked}}
             <!-- logged in user who has already followed the blog-->
             <p class="sign-up">You've already signed up for this course!</p>
             {{else}}

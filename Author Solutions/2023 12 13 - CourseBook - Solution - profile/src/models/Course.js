@@ -42,18 +42,20 @@ let courseSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }
-}, {
-    timestamps: true//?
-});
+}
+,{timestamps: true}//adds "createdAt" and "updatedAt" properties
+);
 
-courseSchema.method('getSignUp', function () {
+courseSchema.method('getLikes', function () {
     return this.signUpList.map(x => x._id);
 });
 
-courseSchema.method('getUsername', function () {
+courseSchema.method('getUsernames', function () {
     return this.signUpList.map(x => x.username);
-})//?
+})
+courseSchema.method('getEmails', function () {
+    return this.signUpList.map(x => x.email);
+})
 
 let Course = mongoose.model('Course', courseSchema);
-
 module.exports = Course;

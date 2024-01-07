@@ -1,6 +1,6 @@
 
 
-//Replace "buyingList" with the actual DB collection
+//Replace "signUpList" with the actual DB collection
  
 const router = require('express').Router();
 const itemServices = require('../services/itemServices')
@@ -36,25 +36,29 @@ router.post('/create',isAuth, async (req, res) => {
 });
 
 
+
+
 router.get('/:itemsId/details', async (req, res) => {
     let item = await itemServices.getOne(req.params.itemsId);
     let itemData = await item.toObject();
     let isOwner = itemData.owner == req.user?._id;
 
-    let itemOwner = await itemServices.findOwner(item.owner).lean();
+    //postOwner.email / postOwner.username
+    let postOwner = await itemServices.findOwner(item.owner).lean();
     
     //ForEach users emails/usernames SplittedBy(',')
-    let itemInfo = itemData.buyingList;//!
+    //Replace emails with username if needed
+    let likedPosts = itemData.signUpList;//!
     let emails = [];
-    itemInfo.forEach((x) => emails.push(x.email));//!
+    likedPosts.forEach((x) => emails.push(x.email));//!
     emails.join(", ");
-    // console.log(itemInfo);
+    console.log(likedPosts);
         
-    let likesCount = itemData.buyingList.length;//!
+    let likesCount = itemData.signUpList.length;//!
     let liker = item.getCollection();
     let isLiked = req.user && liker.some(c => c._id == req.user?._id);
 
-    res.render('items/details', { ...itemData, isOwner, isLiked, likesCount, itemOwner,emails});
+    res.render('items/details', { ...itemData, isOwner, isLiked, likesCount, postOwner,emails});
 });
 
 router.get('/:itemsId/like', async (req, res) => 
@@ -62,7 +66,7 @@ router.get('/:itemsId/like', async (req, res) =>
     const itemsId = req.params.itemsId
     let items = await itemServices.getOne(itemsId);
 
-    items.buyingList.push(req.user._id);//!
+    items.signUpList.push(req.user._id);//!
     await items.save();
     res.redirect(`/items/${req.params.itemsId}/details`);
 });

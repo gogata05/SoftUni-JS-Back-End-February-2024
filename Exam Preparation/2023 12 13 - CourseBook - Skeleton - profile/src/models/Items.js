@@ -5,6 +5,13 @@
 const mongoose = require('mongoose');
 let itemsSchema = new mongoose.Schema({
     //copy entity shape here:
+    //title
+    //type
+    //certificate
+    //image
+    //description
+    //price
+
     title: {
         type: String,
         require: true,
