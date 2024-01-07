@@ -38,7 +38,7 @@ router.get('/:itemsId/details', async (req, res) => {
     // console.log(creatureInfo);
 
     let likesCount = itemsData.votes.length;//!
-    let liker = items.getCollection();
+    let liker = items.getLikes();
     let isLiked = req.user && liker.some((c) => c._id == req.user?._id);
 
     res.render('items/details', { ...itemsData, isOwner, isLiked ,likesCount, itemInfo, emails, itemsOwner });

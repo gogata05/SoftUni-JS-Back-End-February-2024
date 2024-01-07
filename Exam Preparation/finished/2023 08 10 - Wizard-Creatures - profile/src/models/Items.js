@@ -59,7 +59,7 @@ let itemsSchema = new mongoose.Schema({
     
 });
 
-itemsSchema.method('getCollection', function () {
+itemsSchema.method('getLikes', function () {
     return this.votes.map(x => x._id);//!//replace: "votes" with the actual collection
 })
 

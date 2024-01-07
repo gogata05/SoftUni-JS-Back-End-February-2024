@@ -24,10 +24,10 @@ let itemsSchema = new mongoose.Schema({
 itemsSchema.method('getLikes', function () {
     return this.buyingList.map(x => x._id);//!
 })
-courseSchema.method('getUsernames', function () {
+itemsSchema.method('getUsernames', function () {
     return this.buyingList.map(x => x.username);//!
 })
-courseSchema.method('getEmails', function () {
+itemsSchema.method('getEmails', function () {
     return this.buyingList.map(x => x.email);//!
 })
 

@@ -10,9 +10,9 @@
             <h3>Price: €{{price}}</h3>
             <h3>By: {{postOwner.email}}</h3> 
 
-            {{#if likedUsersUsernames}}
+            {{#if likedUsersUsernameString}}
             <!--If there are followers-->
-            <h4>Signing By: {{likedUsersUsernames}}</h4>
+            <h4>Signing By: {{likedUsersUsernameString}}</h4>
             {{else}}
             <!--If there are no followers-->
             <h4>Nobody has signed in for this course yet</h4>

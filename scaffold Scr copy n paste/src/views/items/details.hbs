@@ -9,12 +9,16 @@
 //fix href="#" :                      href="/items/{{_id}}/like"
 //replace src with image shape:       src="{{image}}"
 //Add likes count:                    {{likesCount}}
-//Add postOwner.email:                {{postOwner.email}}
-//Add postOwner.username:             {{postOwner.username}}
+//Add the postOwner email:            {{postOwner.email}}
+//Add the postOwner username:         {{postOwner.username}}
+
+//Add [] likedUsersUsernames          {{likedUsersUsernameString}}
+//Add [] likedUsersIds                {{likedUsersIds}}
+//Add [] likedUsersEmails             {{likedUsersEmailsString}}
 //replace text with variables:        {{name}}
 //copy shape here from create.hbs:
 
-//postOwner.email / postOwner.username
+
 
 //--}}
 
@@ -84,9 +88,9 @@
                     <!-- If there are already people who have cast their vote for the post, separate their emails with a comma and a space ", " -->
                     <!-- <p class="disc">People who voted for the post - alex@gmai.com, petar@gmail.com, petq@gmail.com</p>-->
 
-                    {{#if emails}}
+                    {{#if likedUsersEmails}}
                     <!-- If not display: -->
-                    <p class="disc">People who voted for the post - {{emails}}</p>
+                    <p class="disc">People who voted for the post - {{likedUsersEmails}}</p>
 
                     {{else}}
                     <p class="disc">People who voted for the post - No one has voted yet.</p>

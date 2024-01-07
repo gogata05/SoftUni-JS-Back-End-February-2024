@@ -58,17 +58,33 @@ router.get('/:courseId/details', async (req, res) => {
     let courseData = course.toObject();
     let isOwner = courseData.owner == req.user?._id;
     
-    //postOwner.email / postOwner.username
+    //the postOwner.email / postOwner.username
     let postOwner = await courseServices.findOwner(course.owner).lean();
 
-    let likedUsersUsernames = course.getUsernames();//SplitBy(',') is default by handlebars!
+    let likedPosts = courseData.signUpList;//!
+    
+    ////Users info who liked the post:
+    //usernames
+    let likedUsersUsernames = course.getUsernames();//SplitBy(',') is by default 
+    let likedUsersUsernameString = likedUsersUsernames.join(", ");//!
+    //emails
     let likedUsersEmails = course.getEmails();
+    let likedUsersEmailsString  = likedUsersEmails.join(", ");//!
     
     let likesCount = course.signUpList.length;//!
     let likedUsersIds = course.getLikes();
     let isLiked = req.user && likedUsersIds.some(c => c._id == req.user?._id);
 
-    res.render('course/details', { ...courseData, isOwner, isLiked, likedUsersUsernames, postOwner ,likesCount});
+    res.render('course/details', { ...
+        courseData,
+        isOwner,
+        isLiked,
+        
+        postOwner,
+        likesCount,
+        likedUsersUsernameString,
+        likedUsersEmailsString,
+    });
 });
 
 router.get('/:courseId/sign', async (req, res) => {
@@ -85,7 +101,6 @@ router.get('/:courseId/edit', checkIsOwner, async (req, res) => {
     let course = await courseServices.getOne(courseId);
     res.render('course/edit', { ...course.toObject() })
 });
-
 router.post('/:courseId/edit', checkIsOwner, async (req, res) => {
     try {
         const courseId = req.params.courseId;

@@ -44,18 +44,25 @@ router.get('/:id/details', async (req, res) => {
     let isOwner = creaturesData.owner == req.user?._id;
     let creaturesOwner = await creaturesServices.findOwner(creatures.owner).lean();
     
-    //ForEach users emails SplittedBy(',')
     let creatureInfo = creaturesData.voted;
-    let emails = [];
-    creatureInfo.forEach(x => emails.push(x.email));
-    emails.join(', ');
-    // console.log(creatureInfo);
+
+    //emails SplittedBy(',')
+
+    // let emails = [];
+    // creatureInfo.forEach(x => emails.push(x.email));
+    // emails.join(', ');
+    // // console.log(creatureInfo);
+
+    //emails
+    let likedUsersEmails = creatures.getEmails();
+    let emails = likedUsersEmails.join(", ");//!
     
     let likesCount = creaturesData.voted.length;
     let voted = creatures.getVoted();
     let isVoted = req.user && voted.some(c => c._id == req.user?._id);
 
-    res.render('creatures/details', { ...creaturesData, isOwner, isVoted, creaturesOwner, creatureInfo, emails, likesCount })
+    res.render('creatures/details', { ...
+        creaturesData, isOwner, isVoted, creaturesOwner, creatureInfo, emails, likesCount })
 });
 
 async function isOwner(req, res, next) {

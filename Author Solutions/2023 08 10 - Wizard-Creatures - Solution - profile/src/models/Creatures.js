@@ -47,5 +47,8 @@ let creaturesSchema = new mongoose.Schema({
 creaturesSchema.method('getVoted', function () {
     return this.voted.map(x => x._id);
 })
+creaturesSchema.method('getEmails', function () {
+    return this.voted.map(x => x.email);
+})
 let Creatures = mongoose.model('Creatures', creaturesSchema);
 module.exports = Creatures;
