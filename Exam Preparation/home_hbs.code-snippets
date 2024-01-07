@@ -1,0 +1,17 @@
+{
+	"home for handlebars": {
+		"prefix": "home_hb",
+		"body": [
+		  "{{#if getTop}}",
+		  "{{#each getTop}}",
+		  "{{> home-card }}",
+		  "{{/each}}",
+		  "{{else}}",
+		  "{{!--!--}}",
+		  "$1",
+		  "</article>",
+		  "{{/if}}"
+		],
+		"description": "home for handlebars"
+	  }
+}
