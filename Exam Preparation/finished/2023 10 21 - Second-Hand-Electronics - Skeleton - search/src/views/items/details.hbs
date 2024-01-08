@@ -1,0 +1,66 @@
+
+
+{{!-- 
+//details: details_hbs
+//copy/paste the main or the section html here:
+
+//fix href="#" :                      href="/items/{{_id}}/edit"
+//fix href="#" :                      href="/items/{{_id}}/delete"
+//fix href="#" :                      href="/items/{{_id}}/like"
+//replace src with image shape:       src="{{image}}"
+//Add likes count:                    {{likesCount}}
+//replace text with variables:        {{name}}
+//copy shape here from create.hbs:
+name 
+type
+damages 
+image 
+description 
+production
+exploitation 
+price 
+
+
+//--}}
+<section id="detailsPage">
+    <div id="detailsInfo">
+        <h1>Name: {{name}}</h1>
+        <div class="info"><img src="{{image}}"></div>
+        <div class="info">
+            <h3>Type: {{type}}</h3>
+            <h3>Year of Production: {{production}}</h3>
+            <h3>Years of Exploitation: {{exploitation}}</h3>
+            <h3>Damages: {{damages}}</h3>
+            <h3>Description: {{description}}</h3>
+            <h2>Price: ${{price}}</h2>
+        </div>
+
+
+        {{#if user}}
+          <!--If there is user logged in: <div class="buttons"> -->
+          <!--!-->
+          <div class="buttons"> 
+              {{#if isOwner}}
+                <!--If user is owner: Edit,Delete-->
+                <!--!-->
+                <!--!-->
+                <a href="/items/{{_id}}/edit" class="edit-btn">Edit</a>
+                <a href="/items/{{_id}}/delete" class="delete-btn">Delete</a>
+              {{else}}
+                  {{#if isLiked}}
+                    <!--If user liked-->
+                    <!--!-->
+                    <p><span class="buy">Thank You For Your Purchase</span></p>
+                  {{else}}
+                    <!--If user didn't liked-->
+                    <!--!-->
+                    <a href="/items/{{_id}}/like" class="buy-btn">Buy</a>
+                  {{/if}}
+              {{/if}}
+          <!-- </div> -->
+          <!--!-->
+        </div>
+        {{/if}}   
+
+    </div>
+</section>

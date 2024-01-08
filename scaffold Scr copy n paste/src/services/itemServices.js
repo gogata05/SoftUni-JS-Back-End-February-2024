@@ -1,8 +1,8 @@
 
 
 //Replace "buyingList" with the actual DB collection
-//Replace "enumNameProperty" with the actual "enum" property
 //Replace "firstSearchNameProperty" with the actual "name" property
+//Replace "secondSearchNameProperty" with the actual "enum" property
 //check if "owner" DB property  exists
 
 const Items = require('../models/Items');
@@ -41,7 +41,7 @@ exports.search = (itemsName1, itemsName2) => //!
     //remove #2 if its a single search
     if (!itemsName1 && itemsName2)//2
     {
-        return (Items.find({ enumNameProperty: itemsName2 }).lean());//!
+        return (Items.find({ secondSearchNameProperty: itemsName2 }).lean());//!
     }
 
 }
