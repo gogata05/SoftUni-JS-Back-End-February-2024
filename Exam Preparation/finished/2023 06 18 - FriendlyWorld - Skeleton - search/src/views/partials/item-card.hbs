@@ -1,0 +1,34 @@
+
+
+
+
+
+{{!-- 
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//replace text with variables:      {{name}} (check create.hbs for shape)
+//copy shape here from create.hbs:
+//name
+//years
+//kind
+//image
+//need
+//location
+//description
+
+
+--}}
+<li class="card">
+    <img src="{{image}}"/>{{!--?--}}
+    <p>
+        <strong>Name: </strong><span class="name">{{name}}</span>
+    </p>
+    <p>
+        <strong>Location: </strong><span class="location">{{location}}</span>
+    </p>
+    <p><strong>Need of:</strong><span class="need-of">{{need}}</span></p>
+    <a class="details-btn" href="/items/{{_id}}/details">Details</a>
+</li>
+
+
+

@@ -24,8 +24,9 @@ router.post('/create', async (req, res) => {
 });
 
 router.get('/:itemsId/details', async (req, res) => {
+    
     let items = await itemsServices.getOne(req.params.itemsId);
-    let itemsData = await items.toObject();
+    let itemsData = items.toObject();
     let isOwner = itemsData.owner == req.user?._id;
 
     let itemsOwner = await itemsServices.findOwner(items.owner).lean();
@@ -38,10 +39,11 @@ router.get('/:itemsId/details', async (req, res) => {
     // console.log(creatureInfo);
 
     let likesCount = itemsData.votes.length;//!
-    let liker = items.getLikes();
+    let liker = await items.getLikes();
     let isLiked = req.user && liker.some((c) => c._id == req.user?._id);
 
     res.render('items/details', { ...itemsData, isOwner, isLiked ,likesCount, itemInfo, emails, itemsOwner });
+
 });
 
 router.get('/:itemsId/like', async (req, res) => 

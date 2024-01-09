@@ -1,6 +1,6 @@
 
 
-//Replace "buyingList" with the actual DB collection
+//Replace "buyingList" with the actual DB collection - Ctrl+Shift+F
  
 const router = require('express').Router();
 const itemServices = require('../services/itemServices')

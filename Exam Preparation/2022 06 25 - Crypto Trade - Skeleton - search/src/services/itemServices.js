@@ -1,9 +1,10 @@
 
 
 //Replace "buyingList" with the actual DB collection
-//Replace "enumNameProperty" with the actual "enum" property
 //Replace "firstSearchNameProperty" with the actual "name" property
-//check if "owner" DB property  exists
+//Replace "secondSearchNameProperty" with the actual "enum" property
+
+//check if "owner" DB property its called "owner"
 
 const Items = require('../models/Items');
 const User = require('../models/User');
@@ -28,7 +29,7 @@ exports.getMyLikedPosts = (userId) => Items.find({ buyingList: userId}).lean();/
 
 
 //home
-exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//get the last 3 posts from dash in home
+exports.getTopThree = () => Course.find().sort({createdAt: -1}).limit(3);//get the last 3 "created" posts from dash in home//for "updated" use "sort({updatedAt: -1})"
 
 
 //Remove if "search" not bonus
@@ -41,7 +42,7 @@ exports.search = (itemsName1, itemsName2) => //!
     //remove #2 if its a single search
     if (!itemsName1 && itemsName2)//2
     {
-        return (Items.find({ enumNameProperty: itemsName2 }).lean());//!
+        return (Items.find({ secondSearchNameProperty: itemsName2 }).lean());//!
     }
 
 }

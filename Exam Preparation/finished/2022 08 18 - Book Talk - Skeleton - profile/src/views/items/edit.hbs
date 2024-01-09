@@ -1,0 +1,40 @@
+
+
+{{!-- 
+//edit
+//copy/paste the main or the section html here:
+
+//add into the html:                       action="/items/{{_id}}/edit" method="POST"
+//add into the html:                       name="" like                = for="" and  id=""
+//replace text with variables:             value="{{name}}"
+//replace text with variables:             {{name}}
+//copy shape here from create.hbs:
+//title
+//author
+//image
+//review
+//genre
+//stars
+
+
+//--}}
+
+<section class="edit-form-container">
+    <form action="/items/{{_id}}/edit" method="POST">
+        <h3>Edit Book Review</h3>
+        <label>Title</label>
+        <input type="text" name="title" class="box" value="{{title}}" id="">
+        <label>Author</label>
+        <input type="text" name="author" class="box" value="{{author}}" id="">
+        <label>Genre</label>
+        <input type="text" name="genre" class="box" value="{{genre}}" id="">
+        <label>Stars</label>
+        <input type="number" name="stars" class="box" value="{{stars}}" id="">
+        <label>Image</label>
+        <input type="text" name="image" class="box" value="{{image}}" id="">
+        <label>Review</label>
+        <textarea class="box"
+            name="review">{{review}}</textarea>
+        <input type="submit" value="Edit" class="btn">
+    </form>
+</section>

@@ -1,0 +1,71 @@
+
+{{!-- 
+//main: if_error_hb, if_main_hb,
+//copy/paste the main or the section html here:
+
+//1.add "body" before footer:             {{{body}}}                         
+//2.replace "href" link into the html:    href="/static/css/styles.css"      *
+//2.1.remove "." in "<img>" "href" link:
+//3.copy/paste a "error" div" comment:    hb_error_if
+//4.add user/guest view:                  hb_main_if
+//5.fix the <title></title>:
+
+//add href everywhere: "/" "/items/dashboard" "/items/create" "/auth/login" "/auth/register" "/auth/logout"
+//add href "search" or "profile" if they exists: "/items/search" "/items/profile"
+//--}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+</head>
+
+<body>
+     <!--<div class="error-box">
+            <p>Error</p>
+    </div>-->
+     {{#if error}}
+     <div>
+         <div class="error-box"><!--!-->
+             <p>{{error}}</p>
+         </div>
+     </div>
+     {{/if}}
+    <header class="header">
+
+        <div class="header">
+            <nav class="navbar">
+                <!--For all users: Home,Dashboard-->
+                <!--!-->
+                <!--!-->
+                <a href="/">Home</a>
+                <a href="/items/dashboard">Catalog</a>   
+                {{#if user}}
+                <!--For logged users: Add,Bonus,Logout-->
+                <!--!-->
+                <!--!-->
+                <!--!-->
+                <a href="/items/profile">Profile</a>
+                <a href="/items/create">Create Review</a>
+                <a href="/auth/logout">Logout</a>
+                {{else}}
+                <!--For guest user: Login,Register-->
+                <!--!-->
+                <!--!-->
+                <a href="/auth/login">Login</a>
+                <a href="/auth/register">Register</a>
+                {{/if}}
+            </nav>
+        </div>
+    </header>
+        {{{body}}}{{!--?--}}
+</body>
+</html>

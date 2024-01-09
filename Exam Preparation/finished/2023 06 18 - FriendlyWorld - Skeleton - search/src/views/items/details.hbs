@@ -1,0 +1,88 @@
+
+
+{{!-- 
+//details: details_hbs, hb_if_else
+//copy/paste the main or the section html here:
+
+//fix href="#" :                      href="/items/{{_id}}/edit"
+//fix href="#" :                      href="/items/{{_id}}/delete"
+//fix href="#" :                      href="/items/{{_id}}/like"
+//replace src with image shape:       src="{{image}}"
+//Add likes count:                    {{likesCount}}
+//Add the postOwner email:            {{postOwner.email}}
+
+//Add [] likedUsersIds                {{likedUsersIds}}
+//Add [] likedUsersEmails             {{likedUsersEmailsString}}
+//replace text with variables:        {{name}}
+//copy shape here from create.hbs:
+//name
+//years
+//kind
+//image
+//need
+//location
+//description
+
+//--}}
+
+<main class="details">
+    <!-- Details page -->
+    <section id="details">
+        <div id="details-wrapper">
+            <p id="details-title">Name: {{name}}</p>
+            <div id="img-wrapper">
+                <img src="{{image}}"/>
+            </div>
+            <div id="info-wrapper">
+                <table>
+                    <tr>
+                        <td>
+                            <p>
+                                Years: <span id="details-years">{{years}}</span>
+                            </p>
+                        </td>
+                        <td>
+                            <p>Kind: <span id="details-kind">{{kind}}</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Need of: <span id="details-need">{{need}}</span></p>
+                        </td>
+                        <td>
+                            <p>Location: <span id="details-location">{{location}}</span></p>
+                        </td>
+                    </tr>
+                </table>
+                <p>Description: <span id="details-description">{{description}}</span></p>
+            </div>
+
+            {{#if user}}
+              <!--If there is user logged in: <div class="buttons"> -->
+              <!--!-->
+            <div id="action-buttons">
+                  {{#if isOwner}}
+                    <!--If user is owner: Edit,Delete-->
+                    <!--!-->
+                    <!--!-->
+                <a href="/items/{{_id}}/edit" id="edit-btn">Edit</a>
+                <a href="/items/{{_id}}/delete" id="delete-btn">Delete</a>
+                  {{else}}
+                      {{#if isLiked}}
+                        <!--If user liked-->
+                        <!--!-->
+                       <p id="already-donated">You already donated!</p>
+                      {{else}}
+                        <!--If user didn't liked-->
+                        <!--!-->
+                       <a href="/items/{{_id}}/like" id="donation-btn">Donation</a>
+                      {{/if}}
+                  {{/if}}
+              <!-- </div> -->
+              <!--!-->
+            </div>
+            {{/if}}
+        </div>
+    </section>
+</main>
+

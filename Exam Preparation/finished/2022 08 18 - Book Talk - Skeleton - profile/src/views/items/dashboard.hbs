@@ -1,0 +1,26 @@
+
+
+{{!--
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+//--}}
+
+<section class="catalog" id="catalog">
+    <h2>Book Reviews</h2>
+    <div class="container">
+        <!--If there are book reviews-->
+        <div class="book">
+           <!--some items-->
+           {{#each items}}{{!--?--}}
+           {{> item-card}}
+           {{else}}
+        </div>
+           <!--no items-->
+           <!--!-->
+            <h2 class="no-record">There are no book reviews found yet...</h2>
+           {{/each}}
+    </div>
+</section>

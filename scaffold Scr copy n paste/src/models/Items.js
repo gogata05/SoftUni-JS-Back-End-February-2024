@@ -1,6 +1,6 @@
 //DB models: pp,db
 //type,required,minLength,maxLength, minValue,maxValue, validate, type,ref
-//replace: "buyingList" with the actual collection
+//replace: "buyingList" with the actual collection - Ctrl+Shift+F
 
 
 const mongoose = require('mongoose');

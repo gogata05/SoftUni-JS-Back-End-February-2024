@@ -6,15 +6,16 @@ const router = require('express').Router();
 const itemServices = require('../services/itemServices')
 const { isAuth } = require('../middleware/authMiddleware');
 
-async function checkIsOwner(req, res, next) {
-    let item = await itemServices.getOne(req.params.itemId);
+//comment this if problems with errors:
+// async function checkIsOwner(req, res, next) {
+//     let item = await itemServices.getOne(req.params.itemId);
 
-    if (item.owner == req.user._id) {
-        next();
-    } else {
-        res.redirect(`/item/${req.params.itemId}/details`);
-    }
-}
+//     if (item.owner == req.user._id) {
+//         next();
+//     } else {
+//         res.redirect(`/item/${req.params.itemId}/details`);
+//     }
+// }
 
 
 router.get('/dashboard', async (req, res) => {
@@ -41,20 +42,29 @@ router.get('/:itemsId/details', async (req, res) => {
     let itemData = await item.toObject();
     let isOwner = itemData.owner == req.user?._id;
 
-    let itemOwner = await itemServices.findOwner(item.owner).lean();
+    //the postOwner.email / postOwner.username
+    let postOwner = await itemServices.findOwner(item.owner).lean();
     
-    //ForEach users emails/usernames SplittedBy(',')
-    let itemInfo = itemData.buyingList;//!
-    let emails = [];
-    itemInfo.forEach((x) => emails.push(x.email));//!
-    emails.join(", ");
-    // console.log(itemInfo);
-        
+    
+    let likedPostsList = itemData.buyingList;//!
     let likesCount = itemData.buyingList.length;//!
-    let liker = item.getCollection();
-    let isLiked = req.user && liker.some(c => c._id == req.user?._id);
+    
+    ////Users info who liked the post:
+    //usernames
+    let likedUsersUsernames = item.getUsernames();//SplitBy(',') is by default 
+    let likedUsersUsernamesString = likedUsersUsernames.join(", ");//!
+    //emails
+    let likedUsersEmails = item.getEmails();
+    let likedUsersEmailsString  = likedUsersEmails.join(", ");//!
 
-    res.render('items/details', { ...itemData, isOwner, isLiked, likesCount, itemOwner,emails});
+
+    let likerIds = item.getLikes();
+    let isLiked = req.user && likerIds.some(c => c._id == req.user?._id);
+
+    res.render('items/details', { ...
+        itemData, isOwner, isLiked,
+        likesCount, postOwner, likedPostsList,
+        likedUsersUsernamesString, likedUsersEmailsString });
 });
 
 router.get('/:itemsId/like', async (req, res) => 
@@ -67,12 +77,12 @@ router.get('/:itemsId/like', async (req, res) =>
     res.redirect(`/items/${req.params.itemsId}/details`);
 });
 
-router.get('/:itemsId/edit',checkIsOwner, async (req, res) => {
+router.get('/:itemsId/edit', async (req, res) => {
     const itemsId = req.params.itemsId
     let items = await itemServices.getOne(itemsId);
     res.render('items/edit', { ...items.toObject() })
 });
-router.post('/:itemsId/edit',checkIsOwner, async (req, res) => {
+router.post('/:itemsId/edit', async (req, res) => {
     try {
         const itemId = req.params.itemsId;
         const itemData = req.body;
@@ -85,8 +95,8 @@ router.post('/:itemsId/edit',checkIsOwner, async (req, res) => {
 
 });
 
-router.get('/:itemId/delete', checkIsOwner, async (req, res) => {
-    const itemId = req.params.itemsId;
+router.get('/:itemId/delete', async (req, res) => {
+    const itemId = req.params.itemId;
     await itemServices.delete(itemId);
     res.redirect('/items/dashboard');
 });
