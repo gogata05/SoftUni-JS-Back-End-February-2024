@@ -1,0 +1,94 @@
+
+{{!-- Ctrl+Shift+F
+Use: Ctrl+Shift+F
+--}}
+
+
+{{!-- 
+//main: if_error_hb, if_main_hb,
+//copy/paste the main or the section html here:
+
+//1.add "body" before footer:             {{{body}}}                         
+//2.replace "href" link into the html:    href="/static/css/styles.css"      *
+//2.1.remove "." in "<img>" "href" link:
+//3.copy/paste a "error" div" comment:    hb_error_if
+//4.add user/guest view:                  hb_main_if
+//5.fix the <title></title>:
+
+//add href everywhere: "/" "/items/dashboard" "/items/create" "/auth/login" "/auth/register" "/auth/logout"
+//add href "search" or "profile" if they exists: "/items/search" "/items/profile"
+//--}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs Ads</title>
+    <!-- Do not forget to change the path to the css file -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="box">
+        <!--<div class="error-box">
+            <p>Error</p>
+        </div>-->
+         {{#if error}}
+         <div>
+             <div class="error-box">
+                 <p>{{error}}</p>
+             </div>
+         </div>
+         {{/if}}
+
+        <header class="header">
+            <article class="header-logo">
+                <!-- Do not forget to change the path to the image -->
+                <img src="/static/img/logo.png">
+            </article>
+            <nav class="header-nav">
+                <ul class="header-nav-list">
+                    <!--For all users: Home,Dashboard-->
+                    <!--!-->
+                    <!--!-->
+                    <li class="header-nav-list-item active">
+                        <a href="/" class="header-nav-list-item-link active">Home Page</a>
+                    </li>
+                    <li class="header-nav-list-item">
+                        <a href="/items/dashboard" class="header-nav-list-item-link">All ads</a>
+                    </li>
+                    {{#if user}}
+                    <!--For logged users: Add,Bonus,Logout-->
+                    <!--!-->
+                    <!--!-->
+                    <!--!-->
+                    <!-- Logged users -->
+                    <li class="header-nav-list-item">
+                        <a href="/items/create" class="header-nav-list-item-link">Create Ad</a>
+                    </li>
+                    <li class="header-nav-list-item">
+                        <a href="/items/search" class="header-nav-list-item-link">Search</a>
+                    </li>
+                    <li class="header-nav-list-item">
+                        <a href="/auth/logout" class="header-nav-list-item-link">Logout</a>
+                    </li>
+                    {{else}}
+                    <!--For guest user: Login,Register-->
+                    <!--!-->
+                    <!--!-->
+                    <li class="header-nav-list-item">
+                        <a href="/auth/register" class="header-nav-list-item-link">Register</a>
+                    </li>
+                    <li class="header-nav-list-item">
+                        <a href="/auth/login" class="header-nav-list-item-link">Login</a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </nav>
+        </header>
+        {{{body}}}
+        <footer>
+            <p>©Js Back-End Final Exam 2022</p>
+        </footer>
+    </div>
+</body>
+</html>

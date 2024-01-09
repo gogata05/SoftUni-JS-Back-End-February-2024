@@ -1,0 +1,30 @@
+
+
+{{!-- Ctrl+Shift+F
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+
+//foreach:                                       dash1_hb_for_loop
+//--}}
+
+<main>
+    <section id="all-ads-page">
+        <article class="all-ads-title">
+            <h1>All ads</h1>
+        </article>
+        <!--some items-->
+        {{#each items}}
+        {{> item-card}}
+        {{else}}
+        <!--no items-->
+        <!--!-->
+        <article class="not-available-ads">
+            <h1>No ads created yet.</h1>
+            <h2>Join and find your perfect workers.</h2>
+        </article> 
+        {{/each}}
+    </section>
+</main>
