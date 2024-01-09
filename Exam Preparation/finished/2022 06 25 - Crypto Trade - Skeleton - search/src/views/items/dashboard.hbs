@@ -1,0 +1,29 @@
+
+
+{{!--
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+
+//foreach:                                       dash1_hb_for_loop
+//--}}
+
+<main>
+    <section class="crypto-market">
+        <h1><span>Crypto</span> Trade</h1>
+        <div class="offer-list">
+        <!--some items-->
+        {{#each items}}
+        {{> item-card}}
+        {{else}}
+        </div>
+        <!--no items-->
+        <!--!-->
+        <div class="no-offer">
+            <p>There are no crypto offers found!</p>
+        </div> 
+        {{/each}}
+    </section>
+</main>

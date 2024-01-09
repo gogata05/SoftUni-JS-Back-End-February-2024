@@ -1,0 +1,41 @@
+
+
+
+
+
+{{!-- 
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//replace text with variables:      {{name}} (check create.hbs for shape)
+//copy shape here from create.hbs:
+//name
+//image
+//price
+//description
+//method
+//buyCrypto
+//owner
+
+
+--}}
+
+<div class="coin">
+    <div class="coin-img">
+        <img src="{{image}}">
+    </div>
+    <div class="coin-info">
+        <h1>{{name}}</h1>
+        <p><span>Price: </span>${{price}}</p>
+        <p><span>Payment: </span>{{method}}</p>
+    </div>
+    <a href="/items/{{_id}}/details" class="btn-details">Details</a>
+</div>
+
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+{{!-- <a href="/items/{{_id}}/details" class="added-electronics-in-market">
+  <img src="{{image}}" class="picture-added-electronics" />
+  <h3>{{name}}</h3>
+  <span>Price: ${{price}}</span>
+</a> --}}

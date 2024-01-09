@@ -1,0 +1,75 @@
+
+{{!-- 
+//main: if_error_hb, if_main_hb,
+//copy/paste the main or the section html here:
+
+//1.add "body" before footer:             {{{body}}}                         
+//2.replace "href" link into the html:    href="/static/css/styles.css"      *
+//2.1.remove "." in "<img>" "href" link:
+//3.copy/paste a "error" div" comment:    hb_error_if
+//4.add user/guest view:                  hb_main_if
+//5.fix the <title></title>:
+
+//add href everywhere: "/" "/items/dashboard" "/items/create" "/auth/login" "/auth/register" "/auth/logout"
+//add href "search" "/items/search" 
+//--}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trade</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+     <!-- <div>
+        <div class="errorContainer">
+            <p>Error</p>
+        </div>
+     </div> -->
+
+     {{#if error}}
+     <div>
+         <div class="errorContainer">
+             <p>{{error}}</p>
+         </div>
+     </div>
+     {{/if}}
+    <header class="header">
+        <nav>
+            <img src="/static/images/logo.png" class="logo">
+            <ul>
+                <!--For all users: Home,Dashboard-->
+                <!--!-->
+                <!--!-->
+                <li><a href="/">Home</a></li>
+                <li><a href="/items/dashboard">All Crypto</a></li>
+                <li><a href="/items/search">Search</a></li>
+                {{#if user}}
+                <!--For logged users: Add,Bonus,Logout-->
+                <!--!-->
+                <!--!-->
+                <!--!-->
+                <li><a href="/items/create">Create Offer</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{else}}
+                <!--For guest user: Login,Register-->
+                <!--!-->
+                <!--!-->
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+    {{{body}}} 
+    <footer>
+        <p>Back-End 2022</p>
+    </footer>
+
+</body>
+</html>
