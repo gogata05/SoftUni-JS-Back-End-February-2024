@@ -1,0 +1,25 @@
+
+
+
+
+
+{{!-- Ctrl+Shift+F
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//replace text with variables:      {{name}} (check create.hbs for shape)
+//copy shape here from create.hbs:
+//name 
+//image 
+//age 
+//description
+//location
+--}}
+
+ <div class="imgBx">
+     <img src="{{image}}" alt="post" class="cover">
+ </div>
+ <h5 class="petName">Name: {{name}}</h5>
+ <h5 class="petAge">Age: {{age}}</h5>
+ <a href="/items/{{_id}}/details" id="see-details">
+     <h4 class="details">See details</h4>
+ </a>

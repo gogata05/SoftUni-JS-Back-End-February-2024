@@ -34,10 +34,10 @@ log/reg/logout problems: Ctrl+Shift+F
 login.hbs, register.hbs
 
 search problems: Ctrl+Shift+F
-itemsController.js, itemsServices.js
+itemController.js, itemServices.js
 search.hbs, main.hbs, search-card.hbs
 
 profile problems: Ctrl+Shift+F
 router.js, main.hbs 
-homeController.js, itemsServices.js
+homeController.js, itemServices.js
 profile.hbs, profile-card.hbs

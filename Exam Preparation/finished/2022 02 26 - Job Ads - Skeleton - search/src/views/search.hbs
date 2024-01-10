@@ -1,0 +1,47 @@
+
+
+
+
+{{!-- //if item-card is different
+use search-card:  --}}
+
+
+{{!-- Ctrl+Shift+F
+//search: search_hbs
+//copy/paste the main or the section html here:
+
+//add in </form>:                        action="/items/search" method="GET"
+//add specific names:                    name="searchName1"  
+//foreach                                search_hbs
+--}}
+
+<main>
+    <form class="search" action="/items/search" method="GET">
+        <input type="search" name="searchName1" value="" placeholder="Search email...">
+        <button type="submit" class="btn-search">
+            <!-- Do not forget to change the path to the image -->
+            <img src="/static/img/search-icon.png" alt="search-icon">
+            Search
+        </button>
+    </form>
+    <section id="search-page">
+        <h2>Search result:</h2>
+        <!--replace the class="" with the correct ones!-->
+        <!--If there are matches after search-->
+        {{#if items}}
+        <div class="search-result"><!--!-->
+            <div class="search-list"><!--!-->
+                {{#each items}}
+                {{> search-card}}
+                {{/each}}
+            </div>
+        </div>
+        {{else}}
+        <!--If there are no matches-->
+        <!--!-->
+        <article class="search-page-no-result">
+            <p class="search-page-no-result-message">No match found.</p>
+        </article>
+        {{/if}}
+    </section>
+</main>

@@ -4,7 +4,7 @@
 
 
 const mongoose = require('mongoose');
-let itemsSchema = new mongoose.Schema({
+let itemSchema = new mongoose.Schema({
     //copy entity shape here:
 
     
@@ -21,15 +21,15 @@ let itemsSchema = new mongoose.Schema({
 //,{timestamps: true} //adds "createdAt" and "updatedAt" post properties
 );
 
-itemsSchema.method('getLikes', function () {
+itemSchema.method('getLikes', function () {
     return this.buyingList.map(x => x._id);//!
 })
-itemsSchema.method('getUsernames', function () {
+itemSchema.method('getUsernames', function () {
     return this.buyingList.map(x => x.username);//!
 })
-itemsSchema.method('getEmails', function () {
+itemSchema.method('getEmails', function () {
     return this.buyingList.map(x => x.email);//!
 })
 
-let Items = mongoose.model('Items', itemsSchema);
-module.exports = Items;
+let Item = mongoose.model('Item', itemSchema);
+module.exports = Item;

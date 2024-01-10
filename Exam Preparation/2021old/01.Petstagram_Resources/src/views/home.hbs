@@ -1,0 +1,58 @@
+
+
+{{!-- Ctrl+Shift+F
+//home: home.hbs
+//copy/paste the main or the section html here:
+
+//fix href="#" :                    href="/items/dashboard"
+//foreach                           home.hbs
+//--}}
+
+<main>
+    <!--Welcome Page-->
+    <section class="welcome-content">
+        <article class="welcome-content-text">
+            <h1>Place for Your</h1>
+            <h1 class="bold-welcome">Pets photos</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+        </article>
+        <article class="welcome-content-image">
+            <img src="/static/images/header-dog.png" alt="dog">
+        </article>
+    </section>
+</main>
+
+{{!--//Example1--}}
+{{!--//Delete later--}}
+<main id="home">
+ <section id="homePage" class="background-img">
+    <div class="introduction">
+        <h1>The Trusted Wholesale Marketplace for Used Electronics</h1>
+        <p>Each year, 50 million tons of IT gear reaches end-of-life.</p>
+    </div>
+ </section>
+</main>
+
+{{!--//Example2--}}
+{{!--//Delete later--}}
+<main>
+    <div class="container">
+        <div class="course-message">
+            <h1 id="site-title">Course Book</h1>
+            <h2 id="site-mid-title">Show your opportunities!</h2>
+        </div>
+
+        <div class="last-course">
+            {{#if getTop}}
+            {{#each getTop}}
+            {{> home-card }}
+            {{/each}}
+            {{else}}
+            <article class="not-available-course">
+                <h1>No course created yet.</h1>
+            </article>
+            {{/if}}
+
+        </div>
+    </div>
+</main>
