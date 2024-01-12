@@ -15,7 +15,7 @@ exports.create = (itemsData) => Items.create(itemsData);
 
 exports.delete = (itemsId) => Items.findByIdAndDelete(itemsId);
 
-exports.getAll = () => Items.find().lean();
+exports.getAll = () => Items.find().populate('applied').lean();
 
 exports.update = (itemsId, itemsData) => Items.findByIdAndUpdate(itemsId, itemsData);
 
@@ -29,7 +29,7 @@ exports.getMyLikedPosts = (userId) => Items.find({ applied: userId}).lean();//!
 
 
 //home
-exports.getTopThree = () => Items.find().sort({createdAt: -1}).limit(3);//get the last 3 "created" posts from dash in home//for "updated" use "sort({updatedAt: -1})"
+exports.getTopThree = () => Items.find().sort({createdAt: -1}).limit(3).populate('applied').lean();//get the last 3 "created" posts from dash in home//for "updated" use "sort({updatedAt: -1})"
 
 
 //Remove if "search" not bonus

@@ -30,7 +30,7 @@ router.get('/register', isGuest, (req, res) => {
 });
 router.post('/register', isGuest, async (req, res) => {
     console.log(req.body);
-    const { username, email, password, rePassword } = req.body;//!
+    const { description, email, password, rePassword } = req.body;//!
     //copy shape here:
 
     
@@ -40,7 +40,7 @@ router.post('/register', isGuest, async (req, res) => {
     };
     try {
         await authServices.register({//!
-            username,//!
+            description,//!
             email,//!
             password,//!
         });

@@ -10,9 +10,9 @@
 //replace src with image shape:       src="{{image}}"
 //Add likes count:                    {{likesCount}}
 //Add the postOwner email:            {{postOwner.email}}
-//Add the postOwner username:         {{postOwner.username}}
+//Add the postOwner description:         {{postOwner.description}}
 
-//Add [] likedUsersUsernames          {{likedUsersUsernamesString}}
+//Add [] likedUsersdescriptions          {{likedUsersdescriptionsString}}
 //Add [] likedUsersIds                {{likedUsersIds}}
 //Add [] likedUsersEmails             {{likedUsersEmailsString}}
 //Add [] likedUsersDescription        {{likedUsersDescriptionsString}}
@@ -73,9 +73,9 @@
     </section>
     {{#if isOwner}}
     {{!--!--}}
-        {{#if likedPostsList}}
+        {{#if likersInfo}}
         {{!--!--}}
-        {{#each likedPostsList}}
+        {{#each likersInfo}}
         {{> details-card}}
         {{/each}}{{!--?--}}  
         {{/if}} 

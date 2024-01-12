@@ -13,10 +13,15 @@ let itemSchema = new mongoose.Schema({
     
     //pp snippet here:
 
-
-
-
+    buyingList: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'User',
+        }
+    ],
     
+    
+
 }
 //,{timestamps: true} //adds "createdAt" and "updatedAt" post properties
 );

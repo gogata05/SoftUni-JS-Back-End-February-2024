@@ -39,6 +39,13 @@ Use: Ctrl+Shift+F
             <p>Error</p>
         </div>
     </div> -->
+     {{#if error}}
+     <div>
+         <div class="errorContainer">
+             <p>{{error}}</p>
+         </div>
+     </div>
+     {{/if}}
 
     <!-- Starts Header Section with Navigation Bar -->
     <header>
@@ -46,59 +53,70 @@ Use: Ctrl+Shift+F
             <div class="container">
                 <div class="logo">
                     <!-- Link to Home Page -->
-                    <a href="#">
+                    <a href="/">
                         <img width="50px" src="/static/images/free-30-instagram-stories-icons23_122570.png" alt="img1">
                     </a>
+
+                    <!--For all users: Home,Dashboard-->
+                    <!--!-->
+                    <!--!-->
                     <!-- Link to Home Page -->
-                    <a class="home" href="#">
+                    <a class="home" href="/">
                         <i>Petstagram</i>
                     </a>
                 </div>
-
                 <div class="nav-links">
                     <ul class="nav-group">
                         <li class="nav-item">
                             <!-- Link to Catalog Page -->
-                            <a href="#">
+                            <a href="/items/dashboard">
                                 <i>Catalog</i>
                             </a>
                         </li>
-
-                        <!--For Guest User-->
-                        <li class="nav-item">
-                            <!-- Link to Login Page -->
-                            <a href="#">
-                                <i>Login</i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <!-- Link to Register Page -->
-                            <a href="#">
-                                <i>Register</i>
-                            </a>
-                        </li>
-
+                    {{#if user}}
+                    <!--For logged users: Add,Bonus,Logout-->
+                    <!--!-->
+                    <!--!-->
+                    <!--!-->
                         <!--For login users-->
                         <li class="nav-item">
                             <!-- Link to Add Photo Page -->
-                            <a href="#">
+                            <a href="/items/create">
                                 <i>Add Photo</i>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <!-- Link to Profile Page -->
-                            <a href="#">
+                            <a href="/items/profile">
                                 <i>Profile</i>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <!-- Link to Logout Page -->
-                            <a href="#">
+                            <a href="/auth/logout">
                                 <i>Logout</i>
                             </a>
                         </li>
+                    {{else}}
+                    <!--For guest user: Login,Register-->
+                    <!--!-->
+                    <!--!-->
+                        <!--For Guest User-->
+                        <li class="nav-item">
+                            <!-- Link to Login Page -->
+                            <a href="/auth/login">
+                                <i>Login</i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- Link to Register Page -->
+                            <a href="/auth/register">
+                                <i>Register</i>
+                            </a>
+                        </li>
+                    {{/if}}
                     </ul>
                 </div>
             </div>
@@ -109,54 +127,6 @@ Use: Ctrl+Shift+F
         <span class="footer-section">
             © 2023 SoftUni Back-End Exam
         </span>
-    </div>
-
-</body>
-
-</html>
-
-{{!--//Example1--}}
-{{!--//Delete later--}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Second Hand Electronics</title>
-    <link rel="stylesheet" href="/static/css/styles.css">{{!--!--}}
-</head>
-<body>
-
-    {{#if error}}
-    <div>
-        <div class="errorContainer">
-            <p>{{error}}</p>
-        </div>
-    </div>
-    {{/if}}
-
-    <div id="container">
-        <nav>
-            <ul>
-                <!--For all users: Home,Dashboard-->
-                <li><a href="/">Home</a></li>
-                <li><a href="/items/dashboard">Catalog</a></li>
-
-                {{#if user}}
-                <!--For logged users: Add,Bonus,Logout-->
-                <li><a href="/items/create">Create Offer</a></li>
-                <li><a href="/items/search">Search</a></li>
-                <li><a href="/auth/logout">Logout</a></li>
-
-                {{else}}
-                <!--For guest user: Login,Register-->
-                <li><a href="/auth/login">Login</a></li>
-                <li><a href="/auth/register">Register</a></li>
-                {{/if}}
-
-            </ul>
-        </nav>
-       {{{body}}}
-        <footer>@SoftUni - JS Back-End - Second Hand Electronics 2023</footer>
     </div>
 </body>
 </html>

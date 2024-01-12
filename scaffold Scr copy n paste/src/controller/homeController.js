@@ -20,8 +20,10 @@ router.get('/items/profile',isAuth, async (req, res) => {
     let likedPosts = await itemServices.getMyLikedPosts(userId);
     let owner = await itemServices.findOwner(userId);
     console.log(owner);
+
+    let likersInfo = await itemServices.loadLikersInfo(req.params.itemId);//
     
-    res.render('profile', { createdPosts, likedPosts, owner })
+    res.render('profile', { createdPosts, likedPosts, owner, likersInfo });
 })
 
 

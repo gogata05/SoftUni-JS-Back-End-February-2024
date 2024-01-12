@@ -20,74 +20,15 @@
     <div class="container">
         <div class="col-9">
             <!-- Start Pet Photos Post Section -->
-            <div class="card">
+            {{#each items}}
+            {{>item-card}}
 
-                <!-- Start User Details and Image Location -->
-                <div class="top">
-                    <div class="userDetails">
-                        <!-- Link to User Profile Page -->
-                        <a href="#" action="#" method="#">
-                            <div class="profilepic">
-                                <div class="profile_img">
-                                    <div class="image">
-                                        <img src="/static/images/person.png">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <h3>
-                            <!-- Link to User Profile Page -->
-                            <p>
-                                <!-- show user username -->
-                                MayaB
-                            </p>    
-                            <!-- photo's location -->
-                            <span>Bansko, Bulgaria</span>
-                        </h3>
-                    </div>
-                </div>
-                <!--some items-->
-                {{#each items}}
-                {{> item-card}}
-                <!--!-, </div> here-->
-                
-                <!--no items-->
-                <!--!-->
-                
-                {{/each}}
-
-                
-
-
-
-
-            </div>
-
+            {{else}}
             <!--If there are no photo yet!-->
             <article class="not-available-photo">
                 <h1>No photo posts yet.</h1>
             </article>
+            {{/each}}
         </div>
     </div>
-</main>
-
-{{!--//Example1--}}
-{{!--//Delete later--}}
-<main id="catalog">
- <section id="viewCatalog" class="background-img">
-
-    <div class="added-electronics">
-    <!--some items-->
-        {{#each items}}
-        {{> item-card}}
-        {{else}}
-    </div>
-
-    <!--If there are no electronics in catalog yet-->
-    <div class="guest">
-        There are no electronics found...
-    </div>
-
-    {{/each}}
- </section>
 </main>

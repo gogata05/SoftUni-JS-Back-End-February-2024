@@ -17,6 +17,15 @@ const { isAuth } = require('../middleware/authMiddleware');
 //     }
 // }
 
+async function loadPostOwner(req, res, next) {
+    if (req.params.itemId) {
+        const item = await itemServices.getOne(req.params.itemId);
+        if (item) {
+            req.postOwner = await itemServices.findOwner(item.owner).lean();
+        }
+    }
+    next();
+}
 
 router.get('/dashboard', async (req, res) => {
     let items = await itemServices.getAll();
@@ -42,32 +51,26 @@ router.get('/:itemsId/details', async (req, res) => {
     let itemData = await item.toObject();
     let isOwner = itemData.owner == req.user?._id;
 
-    //the postOwner.email / postOwner.username
+    //the postOwner.email / postOwner.description
     let postOwner = await itemServices.findOwner(item.owner).lean();
-    const authorEmail = item.owner;
+
+    let likersInfo = itemData.applied.map(user => {
+        return {
+            email: user.email,
+            description: user.description
+        };
+    });
+
     
     let likedPostsList = itemData.applied;//!
     let likesCount = itemData.applied.length;//!
-    
-    ////Users info who liked the post:
-    //emails
-    let likedUsersEmails = item.getEmails();
-    //descriptions
-    let likedUsersDescriptions = item.getDescriptions();
 
-    
     let likerIds = item.getLikes();
     let isLiked = req.user && likerIds.some(c => c._id == req.user?._id);
-    //
-    let userIndex = likerIds.findIndex(c => c._id == req.user?._id);
-    let userDescription = userIndex >= 0 ? likedUsersDescriptions[userIndex] : 'Not Found description error';
-    //
-    let userEmailIndex = likerIds.findIndex(c => c._id == req.user?._id);
-    let userEmail = userEmailIndex >= 0 ? likedUsersEmails[userEmailIndex] : 'Not Found email error';
 
     res.render('items/details', { ...
         itemData, isOwner, isLiked,
-        likesCount, postOwner, likedPostsList,userDescription,userEmail,authorEmail });
+        likesCount, postOwner, likedPostsList,likersInfo });
 });
 
 router.get('/:itemsId/like', async (req, res) => 

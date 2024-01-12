@@ -21,8 +21,10 @@ use profile-card:  --}}
 <!--If there are posts-->
 
 <main>
+
     <!-- Start Profile Details Section -->
     <div class="profile">
+
         <!-- Start Profile Personal Data Section -->
         <div class="profile-data">
             <div class="profile_img">
@@ -33,81 +35,37 @@ use profile-card:  --}}
             <div class="personal">
                 <div class="edit">
                     <!-- User Username -->
-                    <p>d_kalaydzhiev</p>
+                    <p>{{user.username}}</p>
                 </div>
                 <div class="data">
+
                     <!-- Total Number of Photos by the User -->
-                    <span>4</span>
+                    <span>{{photoCount}}</span>
                     <p>photos</p>
+
                 </div>
                 <!-- User Email Address -->
-                <p class="email">d.denov@gmail.com</p>
+                <p class="email">{{user.email}}</p>
             </div>
         </div>
+
         <!-- Start Uploaded Photos Section -->
         <div class="pet-photos">
+
             <!-- Link to Uploaded Pet Photo -->
-            <a href="#">
+            {{#each photos}}
+            <a href="/photos/{{this._id}}/details">
                 <!-- Pet Photo -->
-                <img src="https://i.natgeofe.com/n/de94c416-6d23-45f5-9708-e8d56289268e/naturepl_01132178.jpg?w=636&h=631"
-                    alt="pet img">
+                <img src="{{image}}" alt="{{name}}">
             </a>
-            <!-- Link to Uploaded Pet Photo -->
-            <a href="#">
-                <!-- Pet Photo -->
-                <img src="https://cf.ltkcdn.net/small-pets/images/orig/278587-1600x1066-goldfish-swimming-in-fish-tank.jpg"
-                    alt="pet img">
-            </a>
-            <!-- Link to Uploaded Pet Photo -->
-            <a href="#">
-                <!-- Pet Photo -->
-                <img src="https://thumbs.dreamstime.com/b/small-golden-retriever-puppy-6482030.jpg" alt="pet img">
-            </a>
-            <!-- Link to Uploaded Pet Photo -->
-            <a href="#">
-                <!-- Pet Photo -->
-                <img src="https://i.pinimg.com/originals/4e/55/83/4e5583748bc4000805df50e4ebcafffc.png"
-                    alt="pet img">
-            </a>
+            {{else}}
             <!--If there are no photo yet!-->
             <article class="not-available-photo">
                 <h1>You haven't uploaded photos yet…</h1>
             </article>
+            {{/each}}
         </div>
+
     </div>
-</main>
-{{!--//Example1--}}
-{{!--//Delete later--}}
-<main>
-    <section id="user">
-        <div class="user-info">
-            <div class="user-logo">
-                <img src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745">
-            </div>
-            <h1 class="user-email">peter@abv.bg</h1>
-            <h2 class="created-course-count">Total Created Posts: {{createdPosts.length}}</h2>
-            <h2 class="sign-course-count">Total Sign up Posts: {{likedPosts.length}}</h2>
-        </div>
-    </section>
-    <section class="profile-course">
 
-        <div class="created-course">
-            <h2 class="section-title">Created Course</h2>
-            {{#each createdPosts}}
-            {{> profile-card}}
-            {{else}}
-            <h2 class="no-course-in-profile">You haven't created a course yet...</h2>
-            {{/each}}
-        </div>
-
-        <div class="sign-course">
-            <h2 class="section-title">Sign Up Course</h2>
-            {{#each likedPosts}}
-            {{> profile-card}}
-            {{else}}
-            <h2 class="no-course-in-profile">You haven't signed up for any course yet...</h2>
-            {{/each}}
-        </div>
-
-    </section>
 </main>

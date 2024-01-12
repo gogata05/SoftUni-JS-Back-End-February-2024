@@ -38,14 +38,29 @@ router.post('/create',isAuth, async (req, res) => {
 
 
 router.get('/:itemId/details', async (req, res) => {
+    try {
+
     let item = await itemServices.getOne(req.params.itemId);
     let itemData = await item.toObject();
     let isOwner = itemData.owner == req.user?._id;
 
-    //the postOwner.email / postOwner.username
+    //access with: postOwner.email / postOwner.username
     let postOwner = await itemServices.findOwner(item.owner).lean();
     
+
+    //let likersInfo = await itemServices.loadLikersInfo(req.params.itemId);
     
+    ////Users info who liked the post:
+    //access with: {{this.email}} {{this.username}}
+    let likersInfo = itemData.buyingList.map(user => {
+        return {
+            email: user.email,//!
+            username: user.username,//!
+        };
+    });
+    
+
+    //maybe not needed
     let likedPostsList = itemData.buyingList;//!
     let likesCount = itemData.buyingList.length;//!
     
@@ -65,7 +80,14 @@ router.get('/:itemId/details', async (req, res) => {
     res.render('items/details', { ...
         itemData, isOwner, isLiked,
         likesCount, postOwner, likedPostsList,
-        likedUsersUsernamesString, likedUsersEmailsString });
+        likedUsersUsernamesString, likedUsersEmailsString,likersInfo });
+        
+
+    } catch (error) {
+        console.log(error);
+         res.render('404', { error: 'Cannot get details page' });
+    }
+
 });
 
 router.get('/:itemId/like', async (req, res) => 
@@ -88,7 +110,7 @@ router.post('/:itemId/edit', async (req, res) => {
         const itemId = req.params.itemId;
         const itemData = req.body;
         console.log(itemData);
-        await itemServices.update(itemId, itemData);
+        await itemServices.edit(itemId, itemData);
         res.redirect(`/items/${itemId}/details`);
     } catch (error) {
         res.render('items/edit', { error: error.message})
@@ -124,28 +146,19 @@ router.get('/search', async (req, res) => {
     res.render('search', {items});
 });    
 
+//comment
+//Remove if doesn't exists
+router.post('/:itemId/comments', async (req, res) => {
 
-////if the 1st search its not automatically
-// router.get('/search', isAuth, async (req, res) => {
-    //     const result = { ...req.query }
-    //     // console.log(result.search )
-    //     let jobs;
+    const itemId = req.params.itemId;
+    const { message } = req.body;
+    const user = req.user._id;
     
-    //     try {
-        
-        //         if (!!result.search) {
-            //             jobs = await jobService.searchGames(result.search)
-            //             console.log(jobs)
-            //         }
-            //         res.render('jobs/search', { jobs })
-            
-            //     } catch (err) {
-//         res.redirect('/404')                
-//     }
-// })
+  
+        await itemServices.addComment(itemId, { user, message });
+        res.redirect(`/items/${itemId}/details`);
 
-
-
+})
 
 
 

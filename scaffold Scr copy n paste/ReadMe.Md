@@ -41,3 +41,10 @@ profile problems: Ctrl+Shift+F
 router.js, main.hbs 
 homeController.js, itemServices.js
 profile.hbs, profile-card.hbs
+
+
+
+
+postOwner - {{this.Username}},{{this.Email}}
+User - {{user.Username}} {{user.Email}}
+Collections - .populated / {{applied}} {{applied.length}} 
