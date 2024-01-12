@@ -6,30 +6,14 @@ const router = require('express').Router();
 const itemServices = require('../services/itemServices')
 const { isAuth } = require('../middleware/authMiddleware');
 
-//comment this if problems with errors:
-// async function checkIsOwner(req, res, next) {
-//     let item = await itemServices.getOne(req.params.itemId);
-
-//     if (item.owner == req.user._id) {
-//         next();
-//     } else {
-//         res.redirect(`/item/${req.params.itemId}/details`);
-//     }
-// }
-
-async function loadPostOwner(req, res, next) {
-    if (req.params.itemId) {
-        const item = await itemServices.getOne(req.params.itemId);
-        if (item) {
-            req.postOwner = await itemServices.findOwner(item.owner).lean();
-        }
-    }
-    next();
-}
-
 router.get('/dashboard', async (req, res) => {
+    try {
     let items = await itemServices.getAll();
     res.render('items/dashboard', { items });
+} catch (error) {
+    console.log(error);
+    res.status(500).send('Problem with dashboard render');
+}
 });
 
 router.get('/create',isAuth, (req, res) => {
@@ -47,6 +31,7 @@ router.post('/create',isAuth, async (req, res) => {
 
 
 router.get('/:itemsId/details', async (req, res) => {
+    try {
     let item = await itemServices.getOne(req.params.itemsId);
     let itemData = await item.toObject();
     let isOwner = itemData.owner == req.user?._id;
@@ -71,22 +56,37 @@ router.get('/:itemsId/details', async (req, res) => {
     res.render('items/details', { ...
         itemData, isOwner, isLiked,
         likesCount, postOwner, likedPostsList,likersInfo });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Problem with Details render');
+    }
 });
 
 router.get('/:itemsId/like', async (req, res) => 
 {
+    try {
     const itemsId = req.params.itemsId
     let items = await itemServices.getOne(itemsId);
 
     items.applied.push(req.user._id);//!
     await items.save();
     res.redirect(`/items/${req.params.itemsId}/details`);
+} catch (error) {
+    console.log(error);
+    res.status(500).send('Problem with Like render');
+}
 });
 
 router.get('/:itemsId/edit', async (req, res) => {
+    try {
     const itemsId = req.params.itemsId
     let items = await itemServices.getOne(itemsId);
     res.render('items/edit', { ...items.toObject() })
+} catch (error) {
+    console.log(error);
+    res.status(500).send('Problem with Edit render');
+}
 });
 router.post('/:itemsId/edit', async (req, res) => {
     try {
@@ -102,54 +102,38 @@ router.post('/:itemsId/edit', async (req, res) => {
 });
 
 router.get('/:itemId/delete', async (req, res) => {
+    try {
     const itemId = req.params.itemId;
     await itemServices.delete(itemId);
     res.redirect('/items/dashboard');
+} catch (error) {
+    console.log(error);
+    res.status(500).send('Problem with delete render');
+}
 });
 
 
 //double search:
 //Remove if not bonus
 router.get('/search', async (req, res) => {
-   
+    try {
     let itemsName1 = req.query.searchName1;//1//!
     console.log(itemsName1);//1//!
+            // // Добавяне на условие за хвърляне на грешка
+            // if (itemsName1 !== "triggerError") {
+            //     throw new Error("Умишлено предизвикана грешка");
+            // }
     let items = await itemServices.search(itemsName1);//1,2//!
 
     if(items == undefined) {
         items = await itemServices.getAll();
     }    
     res.render('search', {items});
+} catch (error) {
+    console.log(error);
+    res.status(500).send('Problem with search render');
+}
 });    
-
-
-////if the 1st search its not automatically
-// router.get('/search', isAuth, async (req, res) => {
-    //     const result = { ...req.query }
-    //     // console.log(result.search )
-    //     let jobs;
-    
-    //     try {
-        
-        //         if (!!result.search) {
-            //             jobs = await jobService.searchGames(result.search)
-            //             console.log(jobs)
-            //         }
-            //         res.render('jobs/search', { jobs })
-            
-            //     } catch (err) {
-//         res.redirect('/404')                
-//     }
-// })
-
-
-
-
-
-
-
-
-
 
 
 

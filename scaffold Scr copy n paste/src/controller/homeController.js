@@ -14,16 +14,19 @@ router.get('/', (req, res) => {
 //profile:
 //Remove if not bonus
 router.get('/items/profile',isAuth, async (req, res) => {
-    let userId = req.user._id;
-    
-    let createdPosts = await itemServices.getMyCreatedPost(userId);
-    let likedPosts = await itemServices.getMyLikedPosts(userId);
-    let owner = await itemServices.findOwner(userId);
-    console.log(owner);
-
-    let likersInfo = await itemServices.loadLikersInfo(req.params.itemId);//
-    
-    res.render('profile', { createdPosts, likedPosts, owner, likersInfo });
+    try {
+        let userId = req.user._id;
+        
+        let createdPosts = await itemServices.getMyCreatedPost(userId);
+        let likedPosts = await itemServices.getMyLikedPosts(userId);
+        let owner = await itemServices.findOwner(userId);
+        console.log(owner);
+        
+        res.render('profile', { createdPosts, likedPosts, owner, });
+    } catch (error) {
+        console.log(error);
+        res.render('/items/profile', { error: error.message });
+    }
 })
 
 

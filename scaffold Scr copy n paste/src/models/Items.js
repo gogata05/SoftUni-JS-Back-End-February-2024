@@ -13,12 +13,7 @@ let itemSchema = new mongoose.Schema({
     
     //pp snippet here:
 
-    buyingList: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'User',
-        }
-    ],
+
     
     
 

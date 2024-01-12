@@ -11,12 +11,12 @@ exports.login = async ({ email, password }) =>//!
 {
     let user = await User.findOne({ email });//!
     if (!user) {
-        throw new Error('Invalid email or password');
+        throw new Error('Invalid email or password');//!
     };
 
     let isValid = await user.validatePassword(password);
     if (!isValid) {
-        throw new Error('Invalid email or password');
+        throw new Error('Invalid email or password');//!
     }
 
     let payload = {

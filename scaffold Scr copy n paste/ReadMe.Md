@@ -2,12 +2,9 @@
 
 
 Shift+Alt
+Pin: ItemController,ItemServices
 
-
-
-
-
-
+turn of try catch to see nodemon errors
 
 
 
@@ -17,7 +14,6 @@ Ctrl+Shift+F
 3. 
 
 
----register test---
 0.Drag/drop: scr,packages,Readme.md   into the skeleton (not the whole scaffold folder)
 1.Cut everything and put it in "public" folder
 2.Remove the not used "bonus" and rename the other one
@@ -45,6 +41,7 @@ profile.hbs, profile-card.hbs
 
 
 
-postOwner - {{this.Username}},{{this.Email}}
-User - {{user.Username}} {{user.Email}}
-Collections - .populated / {{applied}} {{applied.length}} 
+User - {{user.username}} {{user.email}}
+postOwner - {{postOwner.email}} {{postOwner.username}} or .populate('owner') {{this.owner.username}}
+postLikersInfo - {{this.username}} {{this.email}}
+Collections - .populate('buyingList') / {{buyingList}} {{buyingList.length}} 
