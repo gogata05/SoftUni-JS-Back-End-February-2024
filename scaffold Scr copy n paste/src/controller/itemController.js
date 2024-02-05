@@ -6,17 +6,6 @@ const router = require('express').Router();
 const itemServices = require('../services/itemServices')
 const { isAuth } = require('../middleware/authMiddleware');
 
-//comment this if problems with errors:
-// async function checkIsOwner(req, res, next) {
-//     let item = await itemServices.getOne(req.params.itemId);
-
-//     if (item.owner == req.user._id) {
-//         next();
-//     } else {
-//         res.redirect(`/item/${req.params.itemId}/details`);
-//     }
-// }
-
 
 router.get('/dashboard', async (req, res) => {
     try {

@@ -15,10 +15,12 @@ use profile-card:  --}}
 //foreach "createdPosts":                   {{#if createdPosts}}    {{#each createdPosts}}  {{> profile-card}}
 //foreach "likedPosts":                     {{#if likedPosts}}      {{#each likedPosts}}    {{> profile-card}}
 
+{{user.email}}
+{{user.username}}
+
 
 
 --}}
-<!--If there are posts-->
 
 
 
@@ -30,7 +32,7 @@ use profile-card:  --}}
             <div class="user-logo">
                 <img src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745">
             </div>
-            <h1 class="user-email">peter@abv.bg</h1>
+            <h1 class="user-email">{{user.email}}</h1>
             <h2 class="created-course-count">Total Created Posts: {{createdPosts.length}}</h2>
             <h2 class="sign-course-count">Total Sign up Posts: {{likedPosts.length}}</h2>
         </div>

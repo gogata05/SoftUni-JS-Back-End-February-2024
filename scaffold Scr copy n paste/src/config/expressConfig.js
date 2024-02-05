@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const { auth } = require('../middleware/authMiddleware');
 function expressConfig(app) {
     app.use('/static', express.static(path.join(__dirname, '../public')));
-    app.use(express.urlencoded({ extended: true }));//true or false?
+    app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser());
     app.use(auth);
 }
