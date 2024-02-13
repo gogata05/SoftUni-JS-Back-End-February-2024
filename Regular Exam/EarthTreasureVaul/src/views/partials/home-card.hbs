@@ -1,0 +1,28 @@
+
+{{!-- Delete if no home card exists --}}
+
+{{!-- Use this card only if item-card is different --}}
+
+{{!-- Ctrl+Shift+F
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//replace text with variables:      {{name}} (check create.hbs for shape)
+//LikesCount                        {{likedList.length}}
+//copy shape here from create.hbs:
+name
+category
+color
+image
+location
+formula
+description
+
+
+--}}
+
+<div>
+    <img src="{{image}}">
+    <p>Name: {{name}}</p>
+    <p>Category: {{category}}</p>
+    <a class="details-btn" href="/stones/{{_id}}/details">Details</a>
+</div>

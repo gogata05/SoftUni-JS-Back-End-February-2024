@@ -1,0 +1,32 @@
+
+
+
+
+
+{{!-- Ctrl+Shift+F
+//fix href="#" :                    href="/items/{{_id}}/details"
+//replace src with image shape:     src="{{image}}"
+//replace text with variables:      {{name}} (check create.hbs for shape)
+//copy shape here from create.hbs:
+name
+category
+color
+image
+location
+formula
+description
+
+
+--}}
+
+<li class="card">
+    <img src="{{image}}"/>
+    <p>
+        <strong>Name: </strong><span class="name">{{name}}</span>
+    </p>
+    <p>
+        <strong>Category: </strong><span class="category">{{category}}</span>
+    </p>
+    <p><strong>Formula:</strong><span class="formula">{{formula}}</span></p>
+    <a class="details-btn" href="/stones/{{_id}}/details">Details</a>
+</li>

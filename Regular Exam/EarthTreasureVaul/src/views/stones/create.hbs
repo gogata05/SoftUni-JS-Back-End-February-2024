@@ -1,0 +1,38 @@
+
+
+{{!-- Ctrl+Shift+F
+//create
+//copy/paste the main or the section html here:
+
+//add in </form>                             action="/items/create" method="POST"
+//add into the html:                         name="" like                = for="" and  id=""
+//make shape judging by the form "id" shape:
+//copy entity shape here:
+name
+category
+color
+image
+location
+formula
+description
+
+//--}}
+
+<main class="create">
+    <!-- Create Page (Only for logged-in users) -->
+    <section id="create">
+        <div class="form">
+            <h2>Add Stone</h2>
+            <form class="create-form" action="/stones/create" method="POST">
+                <input type="text" name="name" id="name" placeholder="Name" />
+                <input type="text" name="category" id="category" placeholder="Category" />
+                <input type="text" name="color" id="color" placeholder="Color" />
+                <input type="text" name="image" id="stone-img" placeholder="Image" />
+                <input type="text" name="location" id="location" placeholder="Location" />
+                <input type="text" name="formula" id="formula" placeholder="Formula" />
+                <textarea id="description" placeholder="Description..." name="description"></textarea>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </section>
+</main>

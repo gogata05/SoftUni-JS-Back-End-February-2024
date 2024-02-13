@@ -1,0 +1,41 @@
+
+
+{{!-- Ctrl+Shift+F
+//edit
+//copy/paste the main or the section html here:
+
+//add in </form>                           action="/items/{{_id}}/edit" method="POST"
+//add into the html:                       name="" like                = for="" and  id=""
+//replace text with variables:             value="{{name}}"
+//replace text with variables:             {{name}}
+//copy shape here from create.hbs:
+name
+category
+color
+image
+location
+formula
+description
+
+
+//--}}
+
+<main class="edit">
+    <!-- Edit Page (Only for logged-in users) -->
+    <section id="edit">
+        <div class="form">
+            <h2>Edit item</h2>
+            <form class="edit-form" action="/stones/{{_id}}/edit" method="POST">
+                <input type="text" name="name" id="name" placeholder="Name" value="{{name}}" />
+                <input type="text" name="category" id="category" placeholder="Category" value="{{category}}" />
+                <input type="text" name="color" id="color" placeholder="Color" value="{{color}}" />
+                <input type="text" name="image" id="stone-img" placeholder="Image" value="{{image}}" />
+                <input type="text" name="location" id="location" placeholder="Location" value="{{location}}" />
+                <input type="text" name="formula" id="formula" placeholder="Formula" value="{{formula}}" />
+                <textarea id="description" placeholder="Description..."
+                    name="description">{{description}}</textarea>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </section>
+</main>

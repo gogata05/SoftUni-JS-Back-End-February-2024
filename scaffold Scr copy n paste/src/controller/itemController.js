@@ -6,7 +6,6 @@ const router = require('express').Router();
 const itemServices = require('../services/itemServices')
 const { isAuth } = require('../middleware/authMiddleware');
 
-
 router.get('/dashboard', async (req, res) => {
     try {
         let items = await itemServices.getAll();

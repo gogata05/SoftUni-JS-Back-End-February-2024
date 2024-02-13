@@ -1,0 +1,44 @@
+
+
+{{!-- Ctrl+Shift+F
+//dashboard: dash1_hb_for_loop
+//copy/paste the main or the section html here:
+
+//remove all posts,leave only 1 post:     
+//copy/paste that 1 post into the item-card.hbs
+
+//foreach:                                       dash1_hb_for_loop
+//copy shape here from create.hbs:
+name
+category
+color
+image
+location
+formula
+description
+
+
+//--}}
+
+<main class="dashboard">
+    <section id="dashboard">
+        <h2>Minerals and Gems</h2>
+
+        <ul class="card-wrapper">
+            <!--some items-->
+            {{#each items}}
+            {{> item-card}}
+            {{else}}
+            <!--!-, </div> here-->
+        </ul>
+            <!--no items-->
+            <!--!-->
+            <div id="no-post">
+                <h2>There are no gems and minerals! </h2>
+            </div>
+            
+            {{/each}}
+        {{!--/ul here?--}}
+
+    </section>
+</main>

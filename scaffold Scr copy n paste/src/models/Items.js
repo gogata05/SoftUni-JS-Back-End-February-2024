@@ -1,5 +1,7 @@
+
+
 //DB models: pp,db
-//type,required,minLength,maxLength, minValue,maxValue, validate, type,ref
+//minLength,maxLength, minValue,maxValue,validate
 //replace: "buyingList" with the actual collection - Ctrl+Shift+F
 
 
