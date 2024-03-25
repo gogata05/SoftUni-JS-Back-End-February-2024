@@ -5,7 +5,7 @@
 ### 🎓 Course Link - [Here](https://softuni.bg/trainings/4364/js-back-end-january-2024)
 
 Welcome to the JS Applications course! This course will equip participants with the knowledge and skills required to work with JavaScript applications. Throughout this course, you will delve into various aspects of web development,NoSQL databases,MongoDB,Mongoose,Express
-
+ 
 #### Skills You Will Gain
 
 - Using a Web Server
